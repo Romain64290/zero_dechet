@@ -1,1 +1,3 @@
-zero dechet
+<?php
+
+header ('location: admin/index.php');
