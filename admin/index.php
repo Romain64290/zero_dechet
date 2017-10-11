@@ -7,10 +7,11 @@ require(__DIR__ .'/../include/config.inc.php');
 session_start();
 
 if(isset($_SESSION['id_membre'])) {
-  header ('location: ../modules/admin/dashboard/index.php'); 
-  exit;
-}
+  if($_SESSION['id_typemembre']==4) { header ('location: ../modules/admin/dashboard/index_admin.php');  exit;}
+  if($_SESSION['id_typemembre']==1) { header ('location: ../modules/admin/dashboard/index_participant.php');  exit;}
 
+}
+    
 $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : NULL;
 
 
@@ -43,6 +44,19 @@ $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : NULL;
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <style>
+        
+  .login-box, .register-box {
+    width: 400px;
+    margin: 3% auto;
+}
+        
+    </style>
+    
+    
+    
+    
   </head>
   <body class="hold-transition login-page">
     <div class="login-box">
@@ -52,10 +66,10 @@ $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : NULL;
       </div> /.login-logo -->
 
       <div class="login-box-body">
-          <img src="logo_enforme.png" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto">
+          <img src="logo_zero.jpg" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto"><br>
         <p class="login-box-msg">Connectez-vous à votre espace personnel.</p>
         <form action="../modules/sessions/login.php" method="post">
-          <div class="form-group has-feedback">
+          <div class="form-group has-feedback"> 
             <input type="text" class="form-control" placeholder="Email" name="login" required>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>

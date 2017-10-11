@@ -31,5 +31,8 @@ else
     $_SESSION['nom_membre'] = $resultat['nom_membre'];
 	$_SESSION['prenom_membre'] = $resultat['prenom_membre'];
 	
-    header ('location: ../../modules/admin/dashboard/index.php'); 
+    if($_SESSION['id_typemembre']==1){header('Location: ../../modules/admin/dashboard/index_participant.php');}
+        else{header ('location: ../../modules/admin/dashboard/index_admin.php'); }
+        
+    
 }

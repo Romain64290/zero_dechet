@@ -34,61 +34,86 @@ if (!isset($ss_menu)){$ss_menu="";}
             <li class="header">MENU DE NAVIGATION</li>
             <!-- Optionally, you can add icons to the links -->
             
-           <?php if($_SESSION['id_typemembre']!=1){ ?>
+            
+            
+            
+           <?php //tableau de bord
+           
+           if($_SESSION['id_typemembre']==4){ ?>
              <li <?php if($menu==1){echo "class=\"active\"";}?>>
-             <a href="../dashboard/index.php"><i class="fa fa-dashboard active"></i> <span>Tableau de bord</span></a>
+             <a href="../dashboard/index_admin.php"><i class="fa fa-dashboard active"></i> <span>Tableau de bord</span></a>
             </li>
-             <?php } ?>
-          
+             <?php }else{ ?>
+            <li <?php if($menu==1){echo "class=\"active\"";}?>>
+             <a href="../dashboard/index_participant.php"><i class="fa fa-dashboard active"></i> <span>Tableau de bord</span></a>
+            </li>
+           <?php } ?>
             
-            <?php if($_SESSION['id_typemembre']==4){ ?>
+            
+                    
+            
+            
+            <?php  // les pesées
+            
+            if($_SESSION['id_typemembre']==1){ ?>
+               <li <?php if($menu==2){echo "class=\"active\"";}?>>
+            <a href="../pesee/index.php"><i class="fa fa-balance-scale"></i> <span>Les pesées</span>
+             	</a>
+            </li>
+            <?php } ?>
+            
+            
+            
+            
+             <?php // les conseils
              
-              <li <?php if($menu==5){echo "class=\"active\"";}?>>
-            <a href="../administrateurs/index.php"><i class="fa fa-balance-scale"></i> <span>Les pesées</span>
+             if($_SESSION['id_typemembre']==1){ ?>
+              <li <?php if($menu==3){echo "class=\"active\"";}?>>
+            <a href="../conseils/index.php"><i class="fa fa-info-circle"></i> <span>Conseils / règlement</span>
     
             	</a>
             </li>
-            
             <?php } ?>
             
-                 <?php if($_SESSION['id_typemembre']==4){ ?>
-             
-              <li <?php if($menu==5){echo "class=\"active\"";}?>>
-            <a href="../administrateurs/index.php"><i class="fa fa-info-circle"></i> <span>Conseils / règlement</span>
-    
-            	</a>
-            </li>
             
-            <?php } ?>
             
-                      <?php if($_SESSION['id_typemembre']==4){ ?>
-             
-              <li <?php if($menu==5){echo "class=\"active\"";}?>>
-            <a href="../administrateurs/index.php"><i class="fa fa-users"></i> <span>Ateliers </span>
+            
+              <?php  // Les ateliers
+              
+              if($_SESSION['id_typemembre']==4){ ?>
+              <li <?php if($menu==4){echo "class=\"active\"";}?>>
+            <a href="../ateliers/index_admin.php"><i class="fa fa-calendar"></i> <span>Ateliers </span>
         <small class="label pull-right bg-yellow">1</small>
             	</a>
             </li>
-            
-            <?php } ?>
-            
-                 <?php if($_SESSION['id_typemembre']==4){ ?>
-             
-              <li <?php if($menu==5){echo "class=\"active\"";}?>>
-            <a href="../administrateurs/index.php"><i class="fa fa-envelope-o"></i> <span>Messagerie</span>
-    <small class="label pull-right bg-yellow">1</small>
+             <?php }else{ ?>
+             <li <?php if($menu==4){echo "class=\"active\"";}?>>
+            <a href="../ateliers/index_participant.php"><i class="fa fa-calendar"></i> <span>Ateliers </span>
+        <small class="label pull-right bg-yellow">1</small>
             	</a>
             </li>
+             <?php } ?>
             
-            <?php } ?>
+                   
             
-             <?php if($_SESSION['id_typemembre']==4){ ?>
+             <?php // journal de bord
              
-              <li <?php if($menu==5){echo "class=\"active\"";}?>>
-            <a href="../administrateurs/index.php"><i class="fa fa-pencil-square-o"></i> <span>Journal de bord</span>
+             if($_SESSION['id_typemembre']==1){ ?>
+             <li <?php if($menu==6){echo "class=\"active\"";}?>>
+            <a href="../journal/index.php"><i class="fa fa-pencil-square-o"></i> <span>Journal de bord</span>
     
             	</a>
             </li>
+            <?php } ?>
             
+              <?php // Recherche participants
+             
+             if($_SESSION['id_typemembre']==4){ ?>
+             <li <?php if($menu==7){echo "class=\"active\"";}?>>
+            <a href="../recherche/index.php"><i class="fa fa-users"></i> <span>Recherche participant</span>
+    
+            	</a>
+            </li>
             <?php } ?>
              
      
