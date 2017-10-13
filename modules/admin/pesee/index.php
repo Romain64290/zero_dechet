@@ -16,6 +16,8 @@ require(__DIR__ .'/model.inc.php');
 $connect = new connection();
 $pesee = new pesee($connect);
 
+// verifie si la variable $vajout existe => demande effectuée
+$ajout = isset($_GET['ajout']) ? $_GET['ajout'] : NULL;
 
 
 ?>
@@ -63,11 +65,15 @@ $pesee = new pesee($connect);
 #liste_demandes thead {
   display: none;
 }
+
+
+
+
 </style>
 
   </head>
  
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini"  <?php if($ajout=="ok"){echo"onload=\"Ajout_ok();\"";}  if($ajout=="ko"){echo"onload=\"Ajout_ko();\"";}?> >
   	
     <div class="wrapper">
     	
@@ -139,42 +145,42 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
      <td style="width: 10%; text-align: left">
        <div class="form-group has-feedback">
  	 <div class="input-group">
-         <input type="text"   value="" class="form-control" placeholder="0.00"  name="lieu">  </div> 
+         <input type="text"   value="" class="form-control" placeholder="0.00"  name="om">  </div> 
      </div>       
          </td>
      
         <td style="width: 10%; text-align: left">
        <div class="form-group has-feedback">
  	 <div class="input-group">
-         <input type="text"   value="" class="form-control" placeholder="0.00"  name="lieu">  </div> 
+         <input type="text"   value="" class="form-control" placeholder="0.00"  name="cs">  </div> 
      </div>       
          </td>
          
            <td style="width: 10%; text-align: left">
        <div class="form-group has-feedback">
  	 <div class="input-group">
-         <input type="text"   value="" class="form-control" placeholder="0.00"  name="lieu">  </div> 
+         <input type="text"   value="" class="form-control" placeholder="0.00"  name="compost">  </div> 
      </div>       
          </td>
          
            <td style="width: 10%; text-align: left">
        <div class="form-group has-feedback">
  	 <div class="input-group">
-         <input type="text"   value="" class="form-control" placeholder="0.00"  name="lieu">  </div> 
+         <input type="text"   value="" class="form-control" placeholder="0.00"  name="verre">  </div> 
      </div>       
          </td>
          
            <td style="width: 10%; text-align: left">
        <div class="form-group has-feedback">
  	 <div class="input-group">
-         <input type="text"   value="" class="form-control" placeholder="0.00"  name="lieu">  </div> 
+         <input type="text"   value="" class="form-control" placeholder="0.00"  name="decheterie">  </div> 
      </div>       
          </td>
          
            <td style="width: 10%; text-align: left">
        <div class="form-group has-feedback">
  	 <div class="input-group">
-         <input type="text"   value="" class="form-control" placeholder="0.00"  name="lieu">  </div> 
+         <input type="text"   value="" class="form-control" placeholder="0.00"  name="bac_marron">  </div> 
      </div>       
          </td>
          
@@ -185,7 +191,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
   
        <div class="form-group has-feedback">
  	 <div class="input-group">
-         <input type="text"   value="" class="form-control" placeholder=""  name="lieu">  </div> 
+             <input type="text"   value="" class="form-control" placeholder=""  name="remarques" size="60">  </div> 
      </div>   
      
      </td>
@@ -397,6 +403,31 @@ dateFormat: 'dd-mm-yy',
 firstDay : 1
 });
       
+      
+      
+function Ajout_ok() {
+  	  
+  swal({
+  title: 'Ajout de la pésée enregistrée !',
+  text: "Merci de votre participation",
+  type: 'success',
+
+})
+    
+ }       
+      
+      
+function Ajout_ko() {
+  	  
+  swal({
+  title: 'Ajout de la pesée refusée !',
+  text: "Attention de bien saisir uniqement des chiffres dans les pésées",
+  type: 'error',
+
+})
+
+
+}       
       </script>
 
 

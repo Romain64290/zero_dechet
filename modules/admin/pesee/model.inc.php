@@ -21,7 +21,8 @@
 	try{
 $select = $this->con->prepare('SELECT *
 FROM membre_has_pesee
-WHERE id_membre= :id_membre');
+WHERE id_membre= :id_membre
+ORDER BY date DESC, id_pesee DESC');
 
 $select->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
 
@@ -64,4 +65,47 @@ $delete->execute();
             throw $e;
   }}
 
+  
+/***********************************************************************
+ * Ajout d'une pesee
+ **************************************************************************/
+ 
+ function ajoutPesee($id_membre,$date,$om,$cs,$compost,$verre,$decheterie,$bac_marron,$remarques)
+  {
+ 	
+
+$date=explode("-",$date);
+$date="$date[2]-$date[1]-$date[0]";		
+
+	
+	try{
+$insert = $this->con->prepare('INSERT INTO membre_has_pesee (id_membre,date,ordures_menageres,tri_selectif,compost,verre,dechetterie,bac_marron,remarques)
+VALUES(:id_membre,:date,:ordures_menageres,:tri_selectif,:compost,:verre,:dechetterie,:bac_marron,:remarques)');
+ 
+ 	$execute=$insert->execute(array(
+	'id_membre' => $id_membre,
+	'date' => $date,
+	'ordures_menageres' => $om,
+	'tri_selectif' => $cs,
+	'compost' => $compost,
+	'verre' => $verre,
+	'dechetterie' => $decheterie,
+	'bac_marron' => $bac_marron,
+	'remarques' => $remarques
+		)); 
+	
+	
+	 }
+  catch (PDOException $e){
+       echo $e->getMessage() . " <br><b>Erreur lors de l'ajout d'une pesée</b>\n";
+	throw $e;
+        exit;
+    }
+	
+	  
+  	
+  }
+
+
+  
 }
