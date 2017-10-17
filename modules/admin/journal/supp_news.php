@@ -8,13 +8,13 @@ require(__DIR__ .'/../../../include/connexion.inc.php');
 require(__DIR__ .'/model.inc.php');
 
 
-$id_pesee=$_GET['id_pesee'];
+$id_news=$_GET['id_news'];
 
 // préparation connexion
 $connect = new connection();
-$pesee = new pesee($connect);
+$journal = new journal($connect);
 
-$resultat=$pesee->suppPesee($id_pesee,$_SESSION["id_membre"]);
+$resultat=$journal->suppNews($id_news,$_SESSION["id_membre"]);
 
 
 header('Location:index.php');

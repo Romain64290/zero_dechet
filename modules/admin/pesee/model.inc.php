@@ -46,7 +46,7 @@ $select->execute();
  * Suppression d'une pesee
  **************************************************************************/
   
- function suppPesee($id_pesee)
+ function suppPesee($id_pesee,$id_membre)
   {
  
 
@@ -54,9 +54,10 @@ $select->execute();
 try{ 	 	
 $delete = $this->con->prepare('DELETE 
 		FROM membre_has_pesee
-		WHERE id_pesee  = :id_pesee ');
+		WHERE id_pesee  = :id_pesee AND id_membre  = :id_membre');
 						
 $delete->bindParam(':id_pesee', $id_pesee, PDO::PARAM_INT);
+$delete->bindParam(':id_membre', $id_membre, PDO::PARAM_INT);
 $delete->execute();	
 		}
 

@@ -7,14 +7,14 @@ require(__DIR__ .'/../../../include/config.inc.php');
 require(__DIR__ .'/../../../include/connexion.inc.php');
 require(__DIR__ .'/model.inc.php');
 
-
-$id_pesee=$_GET['id_pesee'];
+// remplace les virgule par des points
+// verfication float a faire..............................................................
 
 // préparation connexion
 $connect = new connection();
-$pesee = new pesee($connect);
+$journal = new journal($connect);
 
-$resultat=$pesee->suppPesee($id_pesee,$_SESSION["id_membre"]);
+$resultat=$journal->ajoutNews($_SESSION["id_membre"],$_POST['titre'],$_POST['news']);
 
+header('Location:index.php?ajout=ok');
 
-header('Location:index.php');
