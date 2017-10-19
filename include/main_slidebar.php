@@ -82,8 +82,8 @@ if (!isset($ss_menu)){$ss_menu="";}
               
               if($_SESSION['id_typemembre']==4){ ?>
               <li <?php if($menu==4){echo "class=\"active\"";}?>>
-            <a href="../ateliers/index_admin.php"><i class="fa fa-calendar"></i> <span>Ateliers </span>
-        <small class="label pull-right bg-yellow">1</small>
+            <a href="../ateliers/index_admin.php"><i class="fa fa-calendar"></i> <span>Ajout d'un atelier </span>
+        
             	</a>
             </li>
              <?php }else{ ?>
@@ -94,7 +94,21 @@ if (!isset($ss_menu)){$ss_menu="";}
             </li>
              <?php } ?>
             
-                   
+             
+            
+             <?php // Listing des atelier
+             
+             if($_SESSION['id_typemembre']==4){ ?>
+             <li <?php if($menu==8){echo "class=\"active\"";}?>>
+            <a href="../ateliers/listing.php"><i class="fa fa-list"></i> <span>Listing des ateliers</span>
+    
+            	</a>
+            </li>
+            <?php } ?>
+            
+            
+            
+            
             
              <?php // journal de bord
              

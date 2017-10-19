@@ -252,7 +252,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
             function suppNews(id_news,titre) {
   	  
   swal({
-  title: 'Etes vous sûr de vouloir supprimer cette article ?',
+  title: 'Etes vous sûr de vouloir supprimer cet article ?',
   text: ""+titre,
   type: 'warning',
   showCancelButton: true,
