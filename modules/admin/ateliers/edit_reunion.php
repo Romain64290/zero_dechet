@@ -362,29 +362,24 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                   
  /* affichage de la liste des inscrits */
                                     
-//$afficheInscrits=$atelier->afficheInscrits($id_reunion); 
+$afficheInscrits=$atelier->afficheInscrits($id_reunion); 
 
-/*
+
 $compteur = 1;
 
 foreach($afficheInscrits as $key){
 			
-		$id_usager=$key->id_usager;
-		$nom=htmlspecialchars($key->nom);
-		$prenom=htmlspecialchars($key->prenom);
+		$id_membre=$key->id_membre;
+		$nom=htmlspecialchars($key->nom_membre);
+		$prenom=htmlspecialchars($key->prenom_membre);
 		$telephone=htmlspecialchars($key->telephone);
 		$email=htmlspecialchars($key->email);
-		$presence_reunion=$key->presence_reunion;
-		$composteur_donne=$key->composteur_donne;
+	
 		
 		// nom/prenom fentre alerte
 		$nomjs=$nom." ".$prenom;
 		
-		$composteur=$key->composteur;
-		$couleur_lombri=htmlspecialchars($key->couleur_lombri);
 		
-		if($result[1]==1){if($composteur==1){$composteur_demande="oui";}else{$composteur_demande="non";}}
-			else{if($composteur==1){$composteur_demande=$couleur_lombri;}else{$composteur_demande="non";}}
 		
 		 
 echo"
@@ -394,7 +389,7 @@ echo"
             <td style=\"width: 10%; text-align: left\">$telephone</td>
             <td style=\"width: 20%; text-align: left\">$email</td>      
             <td style=\"width: 15%; text-align: center\">
-            <a href=\"#\" onclick=\"suppUser($id_reunion,$id_usager,new String('$nomjs'));\">
+            <a href=\"#\" onclick=\"suppUser($id_reunion,$id_membre,new String('$nomjs'));\">
 			<span class=\"label label-danger\"><i class=\"fa fa-trash-o\"></i>&nbsp;Supp.</span></a></td>		
 </tr>";
      

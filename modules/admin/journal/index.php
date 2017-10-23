@@ -153,15 +153,18 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 
            
             <div class="row">
-            <div class="col-md-12">
+                <div class="col-md-3"></div>
+            <div class="col-md-6">
               <div class="box box-primary">
                 <div class="box-header with-border">
+                      <i class="fa fa-envelope"></i>
                     <h3 class="box-title">Ajoutez une news</h3>
                   <div class="box-tools pull-right">
-              
-                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      
+            
+                     <button class="btn btn-box-tool" data-widget="collapse" ><i class="fa fa-minus"></i></button>
                  
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Fermer"><i class="fa fa-times"></i></button>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -192,7 +195,9 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     
                 </form>   
                 
-           </div>  </div>   </div>  </div>           
+           </div>  </div>   </div>
+            <div class="col-md-3"></div>
+            </div>           
                      	 
                  
              </section><!-- /.content -->

@@ -81,7 +81,68 @@ return  $resultat;
    
 }
   
+ 
+ /***********************************************************************
+ * Compte le nbre dde total d'atleier
+ **************************************************************************/
   
+ function TotalAtelier()
+  {
+   
+	
+	try { 
+$select = $this->con->prepare('SELECT COUNT(*) as nbr FROM reunion
+                        ');
+
+$select->execute();	
+	}
+	catch (Exception $e) {
+            echo $e->getMessage() . " <br><b>Erreur lors du calcul du nombre d'atelier</b>\n";
+            throw $e;
+        	}
+
+
+
+$result = $select->fetch();
+$quantite=$result['nbr'];
+		
+		
+if (!$quantite){$quantite=0;}
+
+return  $quantite;
+      
+   
+}
+
+ 
+ /***********************************************************************
+ * Calcul nombres de reponses faites aux ateliers.
+ **************************************************************************/
   
+ function InscriptionsAtelier($id_membre)
+  {
+   
+	
+try { 
+$select = $this->con->prepare('SELECT COUNT(*) as nbr FROM membre_has_reunion
+                        WHERE id_membre= :id_membre');
+						
+$select->bindParam(':id_membre', $id_membre, PDO::PARAM_INT);
+$select->execute();		
+
+}
+	catch (Exception $e) {
+            echo $e->getMessage() . " <br><b>Erreur lors du calcul du nombre de reponses d'un paticipant à un atelier</b>\n";
+            throw $e;
+        	}
+
+$result = $select->fetch();
+$quantite=$result['nbr'];
+		
+if (!$quantite){$quantite=0;}
+      
+return $quantite;
+  
+  } 
   }
  

@@ -10,6 +10,13 @@ $includes = new includes($connect);
 
 if (!isset($ss_menu)){$ss_menu="";}
 
+$nbr_atelier=0;
+
+$total_atelier=$includes->TotalAtelier();
+$inscriptions_atelier=$includes->InscriptionsAtelier($_SESSION['id_membre']);
+
+$nbr_atelier=$total_atelier-$inscriptions_atelier;
+
  ?>    
   <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
@@ -89,7 +96,7 @@ if (!isset($ss_menu)){$ss_menu="";}
              <?php }else{ ?>
              <li <?php if($menu==4){echo "class=\"active\"";}?>>
             <a href="../ateliers/index_participant.php"><i class="fa fa-calendar"></i> <span>Ateliers </span>
-        <small class="label pull-right bg-yellow">1</small>
+        <?php if ($nbr_atelier!=0){echo"<small class=\"label pull-right bg-yellow\">$nbr_atelier</small>";} ?>
             	</a>
             </li>
              <?php } ?>

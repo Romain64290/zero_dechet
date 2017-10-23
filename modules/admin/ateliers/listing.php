@@ -35,8 +35,8 @@ $atelier = new atelier($connect);
    
     <link rel="stylesheet" href="../../../dist/css/skins/skin-blue.min.css">
     
- <!-- DataTables -->
-    <link rel="stylesheet" href="../../../plugins/datatables/dataTables.bootstrap.css">
+         <!-- DataTables -->
+     <link rel="stylesheet" href="../../../plugins/datatables/media/css/dataTables.bootstrap.min.css">
     
 
 
@@ -113,13 +113,13 @@ $compteur=1;
 				 
 foreach($afficheReunion as $key){
 	
-			$id_reunion=$key["id_reunion"];
-			$type_reunion=$key["type_reunion"];
-			$date_reunion=$key["date_reunion"];
-			$nom=htmlspecialchars($key["nom_reunion"]);
-			$lien_map=htmlspecialchars($key["lien_map"]);
-			$nbr_participants=$key["nbr_participants"];
-			$limite_participants=$key["limite_participants"];
+			$id_reunion=$key->id_reunion;
+			$type_reunion=$key->type_reunion;
+			$date_reunion=$key->date_reunion;
+			$nom=htmlspecialchars($key->nom_reunion);
+			$lien_map=htmlspecialchars($key->lien_map);
+			$nbr_participants=$key->nbr_participants;
+			$limite_participants=$key->limite_participants;
 			
 			if($type_reunion==1){$type_reunion="Maison";}else{$type_reunion="Appartement";}			
 			if($limite_participants==0){$limite_participants="Illimité";}		
@@ -159,7 +159,7 @@ foreach($afficheReunion as $key){
             </div><!-- /.col -->
           </div><!-- /.row -->
       
-          
+          Afficher l'historique des participations des membres : <a href="historique_pdf.php" target="_blank"><span class="label label-primary"><i class="fa fa-download"></i> &nbsp; PDF</span></a>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
    
@@ -174,9 +174,9 @@ foreach($afficheReunion as $key){
     <script src="../../../bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../../dist/js/app.min.js"></script>
-     <!-- Datatable -->
-     <script src="../../../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../../plugins/datatables/dataTables.bootstrap.min.js"></script>
+   <!-- Datatable -->
+<script src="../../../plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="../../../plugins/datatables/media/js/dataTables.bootstrap.min.js"></script>
     
     <script>
       $(function () {
