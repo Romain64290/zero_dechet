@@ -105,7 +105,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
             <div class="col-md-12">
               <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><u>> Ajoutez une  pesée</u></h3>
+                    <h3 class="box-title"><i class="fa fa-balance-scale"></i> <u> Ajoutez une  pesée</u></h3>
                   <div class="box-tools pull-right">
               
                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -205,7 +205,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
        
  <div class="col-md-10">
             
-            <i>(*) Les poids doivent être saisi en Kg.</i>
+     <small> <i>(*) Les poids doivent être saisi en Kg.</i></small>
             
  </div>
                       <div class="col-md-2">
@@ -217,7 +217,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
       <div class="row">
        
  <div class="col-md-12">       
-     <h4 class="box-title"><u>> Historique des pesées </u></h4>
+     <h4 class="box-title"><i class="fa fa-balance-scale"></i> <u>Historique des pesées </u></h4>
   <table id="liste_demandes" class="table table-bordered table-striped">
                       <thead>
                       <tr>

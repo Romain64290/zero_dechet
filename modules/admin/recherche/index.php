@@ -43,6 +43,9 @@ $recherche = new recherche($connect);
      
     
     <script src="../../../plugins/Chart.js-master/dist/Chart.js"></script>
+    
+      <!-- DataTables -->
+     <link rel="stylesheet" href="../../../plugins/datatables/media/css/dataTables.bootstrap.min.css">
 
 <style>
 	
@@ -115,44 +118,37 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     </thead>
                     <tbody>
                   
+<?php
 
+$data=$recherche->afficheMembres();    
+ 
+$compteur=1;
+ 
+  foreach($data as $event){
+			
+			$id_membre=$event->id_membre;
+			$nom_membre= htmlspecialchars($event->nom_membre);
+                        $prenom_membre= htmlspecialchars($event->prenom_membre);
+                        $email= htmlspecialchars($event->email);
+                        $telephone= htmlspecialchars($event->telephone);
+                        $commune= htmlspecialchars($event->commune);
+                
 
-
-
-
+echo "
 <tr>
-            <td>1</td>
-            <td>AL OUCH ARWAL </td>
-            <td>Samah</td>
-            <td>0625790036</td>
-            <td>samahsaif7@gmail.com</td>
-            <td>PAU</td>
-            <td><a href="mes_activites.php?id_user=78&email=samahsaif7@gmail.com">Voir le profil</a></td> </tr>
+            <td>$compteur</td>
+            <td> $nom_membre</td>
+            <td>$prenom_membre</td>
+            <td>$telephone</td>
+            <td>$email</td>
+            <td>$commune</td>
+            <td><a href=\"profil.php?id_membre=$id_membre&email=$email\">Voir le profil</a></td> </tr>
+";
 
+$compteur++;
+}
 
-
-
-<tr>
-            <td>2</td>
-            <td>AZZDDINE</td>
-            <td>Mourad</td>
-            <td>0629902306</td>
-            <td>mazzddine@yahoo.com</td>
-            <td>LOns</td>
-            <td><a href="mes_activites.php?id_user=94&email=mazzddine@yahoo.com">Voir le profil</a></td> </tr>
-
-
-
-
-<tr>
-            <td>3</td>
-            <td>BELLOCQ</td>
-            <td>Denise</td>
-            <td>0676982415</td>
-            <td>bellocq.guy@wanadoo.fr</td>
-            <td>Lescar</td>
-            <td><a href="mes_activites.php?id_user=15&email=bellocq.guy@wanadoo.fr">Voir le profil</a></td> </tr>
-
+?>
 
   </tbody>
                    
@@ -188,7 +184,48 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
     <script src="../../../bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../../dist/js/app.min.js"></script>
+    
+     <!-- Datatable -->
+<script src="../../../plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="../../../plugins/datatables/media/js/dataTables.bootstrap.min.js"></script>
 
- 
+ <script>
+     
+      $(function () {
+
+        $('#participants').DataTable({
+       "stateSave": true,
+         "stateDuration": 60 * 3,
+          "ordering": false,
+           "searching": true,
+           "lengthChange": true,
+             "paging": true,
+           
+
+            
+            "language": {
+            "lengthMenu": "_MENU_  enregistrements par page",
+            "zeroRecords": "Désolé, aucun résultat trouvé.",
+             "info": "Affichage page _PAGE_ sur _PAGES_. _TOTAL_ entrées au total.",
+            "infoEmpty": "Aucun enregistrement disponible",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+             "search": "Recherche",
+             "paginate": {
+       			 "first":      "First",
+       			 "last":       "Last",
+        		 "next":       "Suivant",
+        		 "previous":   "Précédent"
+  				  },
+         
+        }
+       
+       
+      });
+      
+     
+      });
+      
+    </script>  
+      
   </body>
 </html>
