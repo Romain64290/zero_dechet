@@ -129,7 +129,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                         <th style=" text-align: center">Tri sélectif *</th>
                         <th style=" text-align: center">Compost *</th>
                         <th style=" text-align: center">Verre *</th>
-                             <th style=" text-align: center">Déchèterie *</th>
+                             <th style=" text-align: center">Textile *</th>
                         <th style=" text-align: center">Bac marron *</th>
                         <th style=" text-align: center">Remarques</th>
                        
@@ -227,7 +227,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                         <th style=" text-align: center">Tri sélectif<br>(en kg)</th>
                         <th style=" text-align: center">Compost<br>(en kg)</th>
                         <th style=" text-align: center">Verre<br>(en kg)</th>
-                         <th style=" text-align: center">Déchèterie<br>(en kg)</th>
+                         <th style=" text-align: center">Textile<br>(en kg)</th>
                         <th style=" text-align: center">Bac marron<br>(en kg)</th>
                         <th style=" text-align: center">Remarques</th>
                         <th style=" text-align: center">Supp.</th>

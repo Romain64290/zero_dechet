@@ -121,6 +121,9 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
     $date_fr= explode("-", $date[0]);
     $date_fr=$date_fr[2]."/".$date_fr[1]."/".$date_fr[0];
     $date_heure=$date_fr." à ".$heure;
+    
+    
+    $verifInscription=$atelier->VerifInscription($id, $_SESSION['id_membre']); 
     ?>               
                 
                       <!-- Post -->
@@ -128,7 +131,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                   <div class="user-block">
                     <img class="img-circle img-bordered-sm" src="../../../dist/img/meeting.jpg" alt="user image">
                         <span class="username">
-                          <a href="#"><?php echo $titre; ?></a>
+            <div style="color:orange;"><a href="#"><?php echo $titre; ?></a> <?php if ($verifInscription==NULL){echo" &nbsp;(Nouveau)";} ?></div>
                          
                         </span>
                     <span class="description"><?php echo $date_heure; ?></span>
@@ -147,7 +150,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
  
  <?php                     
                       
-$verifInscription=$atelier->VerifInscription($id, $_SESSION['id_membre']);   
+  
 
 
                       

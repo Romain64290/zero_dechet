@@ -121,22 +121,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
           
        <div class="row">
             
-             <div class="col-md-4">   
             
-            <div class="form-group has-feedback">
- 	 <div class="input-group">
- <span class="input-group-addon">
-    <span class="fa fa-users"></span>
- 	 </span>
-           	 <select name="type_reunion" class="form-control" required  data-error="Veuillez choisir une type d'atelier">
-                <option value="" selected disabled="disabled">Type d'atelier</option>
-                <option value="1">Réunion</option>
-                <option value="2">Visite</option>
-            </select>            
-            
-  
-     </div><div class="help-block with-errors"></div>   </div>  
-            </div>
             
             <div class="col-md-4">        
           <div class="form-group"><div class="bootstrap-timepicker">
@@ -173,7 +158,10 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                   </div>
                   <!-- /.input group -->
                 </div>  </div>
-                
+                 <div class="col-md-4">   
+            
+            
+            </div>
   
                 </div>
                   

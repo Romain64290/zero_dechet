@@ -95,7 +95,6 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                       <tr>
                       	<th>#</th>
                         <th>Réunion</th>
-                        <th style=" text-align: center">Type</th>
                         <th style=" text-align: center">Inscrit(s)</th>                
                         <th style=" text-align: center">Liste participants</th>
                         
@@ -114,14 +113,13 @@ $compteur=1;
 foreach($afficheReunion as $key){
 	
 			$id_reunion=$key->id_reunion;
-			$type_reunion=$key->type_reunion;
 			$date_reunion=$key->date_reunion;
 			$nom=htmlspecialchars($key->nom_reunion);
 			$lien_map=htmlspecialchars($key->lien_map);
 			$nbr_participants=$key->nbr_participants;
 			$limite_participants=$key->limite_participants;
 			
-			if($type_reunion==1){$type_reunion="Maison";}else{$type_reunion="Appartement";}			
+					
 			if($limite_participants==0){$limite_participants="Illimité";}		
 					
 			
@@ -134,8 +132,7 @@ foreach($afficheReunion as $key){
 			echo "<tr>
                         <td>$compteur</td>
                         <td><a href=\"edit_reunion.php?id_reunion=".$id_reunion."\"> $nom, le $date_debut[2]/$date_debut[1] à $heure</a></td>
-                        <td>$type_reunion</td>
-                        <td>$nbr_participants / $limite_participants</td>
+                        <td align=\"center\">$nbr_participants / $limite_participants</td>
                        
                         <td align=\"center\"><a href=\"liste_pdf.php?id_reunion=".$id_reunion."\" target=\"_blank\"><span class=\"label label-primary\"><i class=\"fa fa-download\"></i> &nbsp; PDF</span></a></td>";
                        

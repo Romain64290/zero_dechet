@@ -15,7 +15,7 @@
  * Ajout d'une reunion
  **************************************************************************/
  
- function ajoutReunion($nom,$description,$type_reunion,$date,$heure_debut,$adresse,$ville,$lien_map,$limite)
+ function ajoutReunion($nom,$description,$date,$heure_debut,$adresse,$ville,$lien_map,$limite)
   {
  	
 
@@ -23,12 +23,11 @@ $date=explode("-",$date);
 $date_reunion="$date[2]-$date[1]-$date[0] $heure_debut";	
  
 		try {
-$insert = $this->con->prepare('INSERT INTO reunion (nom_reunion,description,type_reunion,date_reunion,adresse,id_commune,lien_map,limite_participants)
-VALUES(:nom_reunion,:description,:type_reunion,:date_reunion,:adresse,:id_commune,:lien_map,:limite_participants)');
+$insert = $this->con->prepare('INSERT INTO reunion (nom_reunion,description,date_reunion,adresse,id_commune,lien_map,limite_participants)
+VALUES(:nom_reunion,:description,:date_reunion,:adresse,:id_commune,:lien_map,:limite_participants)');
  
 $insert->bindParam(':nom_reunion', $nom, PDO::PARAM_STR);
 $insert->bindParam(':description', $description, PDO::PARAM_STR);
-$insert->bindParam(':type_reunion', $type_reunion, PDO::PARAM_INT);
 $insert->bindParam(':date_reunion', $date_reunion, PDO::PARAM_STR);
 $insert->bindParam(':adresse', $adresse, PDO::PARAM_STR);
 $insert->bindParam(':id_commune', $ville, PDO::PARAM_INT);
@@ -183,19 +182,18 @@ function afficheAtelierMembre($id_membre)
  * Mise à jour d'une réunion
  **************************************************************************/
   
- function majReunion($nom,$description,$id_reunion,$type_reunion,$date,$heure_debut,$adresse,$ville,$lien_map,$limite)
+ function majReunion($nom,$description,$id_reunion,$date,$heure_debut,$adresse,$ville,$lien_map,$limite)
   {
  
 $date=explode("-",$date);
 $date_reunion="$date[2]-$date[1]-$date[0] $heure_debut"; 	
 	
 	try{	
-$update = $this->con->prepare('UPDATE reunion SET nom_reunion=:nom_reunion,description=:description,type_reunion = :type_reunion,date_reunion = :date_reunion,adresse = :adresse,id_commune = :id_commune,lien_map = :lien_map,limite_participants = :limite  WHERE id_reunion = :id_reunion'); 
+$update = $this->con->prepare('UPDATE reunion SET nom_reunion=:nom_reunion,description=:description,date_reunion = :date_reunion,adresse = :adresse,id_commune = :id_commune,lien_map = :lien_map,limite_participants = :limite  WHERE id_reunion = :id_reunion'); 
 
 $update->bindParam(':nom_reunion', $nom, PDO::PARAM_STR);
 $update->bindParam(':description', $description, PDO::PARAM_STR);
 $update->bindParam(':id_reunion', $id_reunion, PDO::PARAM_INT);	    	
-$update->bindParam(':type_reunion', $type_reunion, PDO::PARAM_INT);
 $update->bindParam(':date_reunion', $date_reunion, PDO::PARAM_STR);
 $update->bindParam(':adresse', $adresse, PDO::PARAM_STR);
 $update->bindParam(':id_commune', $ville, PDO::PARAM_INT);

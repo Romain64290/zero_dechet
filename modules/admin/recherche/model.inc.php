@@ -105,5 +105,36 @@ $select->execute();
    
 }
 
+/**************************************************************************
+ Affichage des réunions
+***************************************************************************/  
+
+function afficheAtelierMembre($id_membre)
+  {
+  
+  try{
+    	
+		$select = $this->con->prepare('SELECT * 
+		FROM membre_has_reunion
+                INNER JOIN reunion ON reunion.id_reunion=membre_has_reunion.id_reunion
+                WHERE id_membre=:id_membre AND presence=1
+		ORDER BY date_reunion DESC');
+                
+                $select->bindParam(':id_membre', $id_membre, PDO::PARAM_INT);
+				
+		$select->execute();
+		
+		$data = $select->fetchAll(PDO::FETCH_OBJ);
+		
+		}
+		
+	 catch (PDOException $e){
+       echo $e->getMessage() . " <br><b>Erreur lors de l'affichage du listing des réunions</b>\n";
+	throw $e;
+        exit;
+    }
+	 
+ return $data;
+  } 
 
 }

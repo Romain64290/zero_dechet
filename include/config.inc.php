@@ -38,7 +38,7 @@
   setlocale(LC_ALL, 'fr_FR.UTF-8');
   
    // Adresse du site
-   define("URL_SITE", "https://");
+   define("URL_SITE", "https://zerodechet.agglo-pau.fr");
    
      //balise <title>
   define("TITLE", "Famille zéro déchet");

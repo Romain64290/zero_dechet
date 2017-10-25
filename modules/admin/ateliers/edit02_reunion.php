@@ -12,7 +12,7 @@ require(__DIR__ .'/model.inc.php');
 $connect = new connection();
 $atelier = new atelier($connect);
 
-$atelier->majReunion($_POST['nom'],$_POST['description'],$_POST['id_reunion'],$_POST['type_reunion'],$_POST['date'],$_POST['heure_debut'],$_POST['adresse'],$_POST['ville'],$_POST['lien_map'],$_POST['limite']);
+$atelier->majReunion($_POST['nom'],$_POST['description'],$_POST['id_reunion'],$_POST['date'],$_POST['heure_debut'],$_POST['adresse'],$_POST['ville'],$_POST['lien_map'],$_POST['limite']);
 
 //envoi d'un email à tous les participants
 //$compostage->emailEditReunion($_POST['id_reunion']);

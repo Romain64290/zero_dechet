@@ -151,8 +151,9 @@ $engage_pile=RenommeEngagement($data['engage_pile']);
 
 function RenommeEngagement($id)
 {
-    if ($id==2){$id="Je m'engage à faire ce nouveau geste";}
-    if ($id==3){$id=" Je le fais déjà et je m'engage à m'améliorer !";}
+    if ($id=="Non"){$id="<span class=\"label label-danger\">Non</span>";}
+    if ($id==2){$id="<span class=\"label label-success\">Je m'engage</span>";}
+    if ($id==3){$id=" <span class=\"label label-info\">Je progresse</span>";}
     return $id;
 }
 
@@ -184,19 +185,19 @@ $email <br>
     
 <b>Mes engagements</b>
 <ul>
-<li>Limiter les emballages : $engage_emballages</li>
-<li>Limiter les produits jetables  : $engage_jetables</li>
-<li>Cuisiner au lieu d'acheter des produits industriels suremballés: $engage_fait_maison</li>
-<li>Limiter le gaspillage alimentaire : $engage_gaspillage</li>
-<li>Composter mes déchets de cuisine dans un composteur individuel : $engage_compostage_indiv</li>
-<li>Composter mes déchets de cuisine dans un lombricomposteur : $engage_lombri</li>
-<li>Composter mes déchets de cuisine dans un composteur collectif : $engage_compostage_collect</li>
-<li>Donner mes restes et épluchures aux animaux : $engage_reste</li>
-<li>Favoriser l'occasion, la réparation, le prêt, le don... : $engage_occasion</li>
-<li>Coller un autocollant stop pub : $engage_stoppub</li>
-<li>Acheter/fabriquer des produits d'entretien ou d'hygiène plus naturels : $engage_fabrique</li>
-<li>Boire l'eau du robinet : $engage_eau</li>
-<li>Utiliser des piles rechargeables : $engage_pile</li>
+<li>Limiter les emballages => $engage_emballages</li>
+<li>Limiter les produits jetables =>  $engage_jetables</li>
+<li>Cuisiner au lieu d'acheter des produits industriels suremballés => $engage_fait_maison</li>
+<li>Limiter le gaspillage alimentaire => $engage_gaspillage</li>
+<li>Composter mes déchets de cuisine dans un composteur individuel => $engage_compostage_indiv</li>
+<li>Composter mes déchets de cuisine dans un lombricomposteur => $engage_lombri</li>
+<li>Composter mes déchets de cuisine dans un composteur collectif => $engage_compostage_collect</li>
+<li>Donner mes restes et épluchures aux animaux => $engage_reste</li>
+<li>Favoriser l'occasion, la réparation, le prêt, le don... => $engage_occasion</li>
+<li>Coller un autocollant stop pub => $engage_stoppub</li>
+<li>Acheter/fabriquer des produits d'entretien ou d'hygiène plus naturels => $engage_fabrique</li>
+<li>Boire l'eau du robinet => $engage_eau</li>
+<li>Utiliser des piles rechargeables => $engage_pile</li>
 </ul>
     
 <b>Pret à peser : </b>  $pret_a_peser <br><br>
@@ -247,7 +248,7 @@ $email <br>
                         <th style=" text-align: center">Tri sélectif<br>(en kg)</th>
                         <th style=" text-align: center">Compost<br>(en kg)</th>
                         <th style=" text-align: center">Verre<br>(en kg)</th>
-                         <th style=" text-align: center">Déchèterie<br>(en kg)</th>
+                         <th style=" text-align: center">Textile<br>(en kg)</th>
                         <th style=" text-align: center">Bac marron<br>(en kg)</th>
                         <th style=" text-align: center">Remarques</th>
                         
@@ -334,6 +335,46 @@ echo"
             <!-- form start -->
             
   <div class="box-body">
+      
+       </div></div>
+
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          
+          
+                <div class="row">
+            
+            <div class="col-md-12">
+              <div class="box box-primary collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Participation aux ateliers </h3>
+              <div class="box-tools pull-right">
+                   <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+  <div class="box-body">
+      
+      <ul>
+ <?php       
+ 
+ $data2=$recherche->afficheAtelierMembre($_GET['id_membre']);    
+ 
+ 
+  foreach($data2 as $event){
+			
+			
+          $nom_reunion= htmlspecialchars($event->nom_reunion);
+          
+          echo"<li>$nom_reunion</li>";
+  }               
+          
+  ?>        
+      </ul>
       
        </div></div>
 
