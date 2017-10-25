@@ -1,7 +1,8 @@
 <?php
 
  //***** Dernière modification : 17/06/2016, Romain TALDU	*****/
-
+//session_start();
+//echo $_SESSION['id_membre']; exit;
 require(__DIR__ .'/../../../include/verif_session.php');
 $menu=1;
 require(__DIR__ .'/../../../include/config.inc.php');

@@ -400,7 +400,9 @@ dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
 dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
 weekHeader: 'Sem.',
 dateFormat: 'dd-mm-yy',
-firstDay : 1
+firstDay : 1,
+minDate: new Date(2017, 12 - 1, 1),
+maxDate: new Date(2018, 4 - 1, 31)
 });
       
       

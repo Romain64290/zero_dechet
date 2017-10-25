@@ -1,7 +1,6 @@
 <?php 
 
 /***** Dernière modification : 17/06/2016, Romain TALDU	*****/
-
 require(__DIR__ .'/../../include/config.inc.php');
 require(__DIR__ .'/../../include/connexion.inc.php');
 require(__DIR__ .'/model.inc.php');

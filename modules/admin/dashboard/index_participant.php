@@ -100,7 +100,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 	
            <div class="row">
                     <div class="col-md-8">
-                         <b>> <u>Cumul de vos pesées </u></b><br><br>
+                         <b>> <u>Cumul de vos pesées en Kg</u></b><br><br>
                     	<div class="chart-responsive">
                       	
                         <canvas id="pieChart" height="150"></canvas>
@@ -140,12 +140,12 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     <tbody>
                         <tr>
                             <td style=" text-align: center">Vous</td>
-                            <td style=" text-align: center">0</td>
-                            <td style=" text-align: center" >0</td>
-                            <td style=" text-align: center">0</td>
-                            <td style=" text-align: center">0</td>
-                            <td style=" text-align: center">0</td>
-                            <td style=" text-align: center">0</td>
+                            <td style=" text-align: center"><?php echo $OM=$dashboard->projection($_SESSION['id_membre'],0); ?> </td>
+                            <td style=" text-align: center" ><?php echo $OM=$dashboard->projection($_SESSION['id_membre'],1); ?></td>
+                            <td style=" text-align: center"><?php echo $OM=$dashboard->projection($_SESSION['id_membre'],2); ?></td>
+                            <td style=" text-align: center"><?php echo $OM=$dashboard->projection($_SESSION['id_membre'],3); ?></td>
+                            <td style=" text-align: center"><?php echo $OM=$dashboard->projection($_SESSION['id_membre'],4); ?></td>
+                            <td style=" text-align: center"><?php echo $OM=$dashboard->projection($_SESSION['id_membre'],5); ?></td>
                         </tr>
                          <tr>
                             <td style=" text-align: center">Agglo</td>
@@ -455,7 +455,7 @@ var myChart = new Chart(ctx, {
             ],
     datasets: [
         {
-            data: [14, 133, 159, 185, 220, 313],
+            data: [<?php echo $cumul=$dashboard->Cumul($_SESSION['id_membre']); ?>],
             backgroundColor: [
                  "#d2d6de",
                 "#f39c12",
