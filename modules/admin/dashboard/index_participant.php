@@ -265,7 +265,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-               <canvas id="canvas" style="height:250px"></canvas>
+               <canvas id="canvas_OM"></canvas>
              
              </div>
   	
@@ -292,7 +292,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-               
+                 <canvas id="canvas_tri"></canvas>
              
              </div>
   	
@@ -319,7 +319,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-               
+                <canvas id="canvas_compost"></canvas>
              
              </div>
   	
@@ -346,7 +346,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-               
+                <canvas id="canvas_verre"></canvas>
              
              </div>
   	
@@ -373,7 +373,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-               
+                <canvas id="canvas_textile"></canvas>
              
              </div>
   	
@@ -401,7 +401,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-               
+                <canvas id="canvas_marron"></canvas>
              
              </div>
   	
@@ -476,68 +476,56 @@ var myChart = new Chart(ctx, {
 </script>
 
  
-    <script>
-        var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        
-        var randomScalingFactor = function() {
-            return Math.round(Math.random() * 100);
-            //return 0;
-        };
-        var randomColorFactor = function() {
-            return Math.round(Math.random() * 255);
-        };
-        var randomColor = function(opacity) {
-            return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
-        };
+<script>
+     
 
-        var config = {
+ var config_OM = {
             type: 'line',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [{
-                    label: "My First dataset",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
                     fill: false,
                     borderDash: [5, 5],
-                }, {
-                    hidden: true,
-                    label: 'hidden dataset',
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                }, {
-                    label: "My Second dataset",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    borderColor :'rgba(183,192,210,0.9)',
+                    backgroundColor : 'rgba(183,192,210,0.75)',
+                    pointBorderColor :'rgba(183,192,210,0.9)',
+                    pointBackgroundColor : 'rgba(183,192,210,0.9)',
+                    pointBorderWidth : 1
                 }]
             },
             options: {
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Chart.js Line Chart'
+                    text:'Ordures ménagéres pour un foyer de x personnes'
                 },
                 tooltips: {
                     mode: 'label',
                     callbacks: {
-                        // beforeTitle: function() {
-                        //     return '...beforeTitle';
-                        // },
-                        // afterTitle: function() {
-                        //     return '...afterTitle';
-                        // },
-                        // beforeBody: function() {
-                        //     return '...beforeBody';
-                        // },
-                        // afterBody: function() {
-                        //     return '...afterBody';
-                        // },
-                        // beforeFooter: function() {
-                        //     return '...beforeFooter';
-                        // },
-                        // footer: function() {
-                        //     return 'Footer';
-                        // },
-                        // afterFooter: function() {
-                        //     return '...afterFooter';
-                        // },
+                      
                     }
                 },
                 hover: {
@@ -558,110 +546,433 @@ var myChart = new Chart(ctx, {
                             labelString: 'Value'
                         },
                         ticks: {
-                            suggestedMin: -10,
-                            suggestedMax: 250,
+                            suggestedMin:0,
+                            suggestedMax: 150,
                         }
                     }]
                 }
             }
         };
 
-        $.each(config.data.datasets, function(i, dataset) {
-            dataset.borderColor = randomColor(0.4);
-            dataset.backgroundColor = randomColor(0.5);
-            dataset.pointBorderColor = randomColor(0.7);
-            dataset.pointBackgroundColor = randomColor(0.5);
-            dataset.pointBorderWidth = 1;
-        });
+ var ctx_OM          = $('#canvas_OM').get(0).getContext('2d')
+ var ChartOM                = new Chart(ctx_OM, config_OM);
+   
+ </script>
+    
+<script>
+     
 
-        window.onload = function() {
-            var ctx = document.getElementById("canvas").getContext("2d");
-            window.myLine = new Chart(ctx, config);
+ var config_tri = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    borderColor :'rgba(235,145,0,0.9)',
+                    backgroundColor : 'rgba(235,145,0,0.75)',
+                    pointBorderColor :'rgba(235,145,0,0.9)',
+                    pointBackgroundColor : 'rgba(235,145,0,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Tri selectif pour un foyer de x personnes'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 150,
+                        }
+                    }]
+                }
+            }
         };
 
-        $('#randomizeData').click(function() {
-            $.each(config.data.datasets, function(i, dataset) {
-                dataset.data = dataset.data.map(function() {
-                    return randomScalingFactor();
-                });
+ var ctx_tri         = $('#canvas_tri').get(0).getContext('2d')
+ var Charttri                = new Chart(ctx_tri, config_tri);
+   
+ </script>
 
-            });
+  
+<script>
+     
 
-            window.myLine.update();
-        });
-
-        $('#changeDataObject').click(function() {
-            config.data = {
-                labels: ["July", "August", "September", "October", "November", "December"],
-                datasets: [{
-                    label: "My First dataset",
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+ var config_compost = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
                     fill: false,
-                }, {
-                    label: "My Second dataset",
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
                     fill: false,
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    borderColor :'rgba(0,153,84,0.9)',
+                    backgroundColor : 'rgba(0,153,84,0.75)',
+                    pointBorderColor :'rgba(0,153,84,0.9)',
+                    pointBackgroundColor : 'rgba(0,153,84,0.9)',
+                    pointBorderWidth : 1
                 }]
-            };
-
-            $.each(config.data.datasets, function(i, dataset) {
-                dataset.borderColor = randomColor(0.4);
-                dataset.backgroundColor = randomColor(0.5);
-                dataset.pointBorderColor = randomColor(0.7);
-                dataset.pointBackgroundColor = randomColor(0.5);
-                dataset.pointBorderWidth = 1;
-            });
-
-            // Update the chart
-            window.myLine.update();
-        });
-
-        $('#addDataset').click(function() {
-            var newDataset = {
-                label: 'Dataset ' + config.data.datasets.length,
-                borderColor: randomColor(0.4),
-                backgroundColor: randomColor(0.5),
-                pointBorderColor: randomColor(0.7),
-                pointBackgroundColor: randomColor(0.5),
-                pointBorderWidth: 1,
-                data: [],
-            };
-
-            for (var index = 0; index < config.data.labels.length; ++index) {
-                newDataset.data.push(randomScalingFactor());
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Compost pour un foyer de x personnes'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 150,
+                        }
+                    }]
+                }
             }
+        };
 
-            config.data.datasets.push(newDataset);
-            window.myLine.update();
-        });
+ var ctx_compost        = $('#canvas_compost').get(0).getContext('2d')
+ var Chartcompost               = new Chart(ctx_compost, config_compost);
+   
+ </script>
+  
+<script>
+     
 
-        $('#addData').click(function() {
-            if (config.data.datasets.length > 0) {
-                var month = MONTHS[config.data.labels.length % MONTHS.length];
-                config.data.labels.push(month);
-
-                $.each(config.data.datasets, function(i, dataset) {
-                    dataset.data.push(randomScalingFactor());
-                });
-
-                window.myLine.update();
+ var config_verre = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    borderColor :'rgba(25,136,200,0.9)',
+                    backgroundColor : 'rgba(25,136,200,0.75)',
+                    pointBorderColor :'rgba(25,136,200,0.9)',
+                    pointBackgroundColor : 'rgba(25,136,200,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Verre pour un foyer de x personnes'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 150,
+                        }
+                    }]
+                }
             }
-        });
+        };
 
-        $('#removeDataset').click(function() {
-            config.data.datasets.splice(0, 1);
-            window.myLine.update();
-        });
+ var ctx_verre         = $('#canvas_verre').get(0).getContext('2d')
+ var Chartverre                = new Chart(ctx_verre, config_verre);
+   
+ </script>
+   
+<script>
+     
 
-        $('#removeData').click(function() {
-            config.data.labels.splice(-1, 1); // remove the label first
+ var config_textile = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    borderColor :'rgba(0,171,214,0.9)',
+                    backgroundColor : 'rgba(0,171,214,0.75)',
+                    pointBorderColor :'rgba(0,171,214,0.9)',
+                    pointBackgroundColor : 'rgba(0,171,214,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Textile pour un foyer de x personnes'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 150,
+                        }
+                    }]
+                }
+            }
+        };
 
-            config.data.datasets.forEach(function(dataset, datasetIndex) {
-                dataset.data.pop();
-            });
+ var ctx_textile         = $('#canvas_textile').get(0).getContext('2d')
+ var Charttextile               = new Chart(ctx_textile, config_textile);
+   
+ </script>
+   
+<script>
+     
 
-            window.myLine.update();
-        });
-    </script>
+ var config_marron = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    borderColor :'rgba(77,36,0,0.9)',
+                    backgroundColor : 'rgba(77,36,0,0.75)',
+                    pointBorderColor :'rgba(77,36,0,0.9)',
+                    pointBackgroundColor : 'rgba(77,36,0,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Bac marron pour un foyer de x personnes'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 150,
+                        }
+                    }]
+                }
+            }
+        };
+
+ var ctx_marron         = $('#canvas_marron').get(0).getContext('2d')
+ var Chartmarron                = new Chart(ctx_marron, config_marron);
+   
+ </script>
   </body>
 </html>
