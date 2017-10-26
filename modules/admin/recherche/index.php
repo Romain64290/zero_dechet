@@ -133,16 +133,16 @@ $compteur=1;
                         $telephone= htmlspecialchars($event->telephone);
                         $commune= htmlspecialchars($event->commune);
                 
-
+                        
 echo "
 <tr>
             <td>$compteur</td>
-            <td> $nom_membre <div style=\"color:red\">[Alerte]</div></td>
+            <td>$nom_membre </td>
             <td>$prenom_membre</td>
             <td>$telephone</td>
             <td>$email</td>
             <td>$commune</td>
-            <td><a href=\"profil.php?id_membre=$id_membre&email=$email\">Voir le profil</a></td> </tr>
+            <td><a href=\"profil.php?id_membre=$id_membre&email=$email\">Voir le profil <span class=\"label label-danger\"><i class=\"fa fa-warning\"></i></span></a></td> </tr>
 ";
 
 $compteur++;

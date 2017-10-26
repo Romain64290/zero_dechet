@@ -508,7 +508,7 @@ var myChart = new Chart(ctx, {
  var config_OM = {
             type: 'line',
             data: {
-                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
                 datasets: [
                  {
                     label: "France",
@@ -591,7 +591,7 @@ var myChart = new Chart(ctx, {
  var config_tri = {
             type: 'line',
             data: {
-                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
                 datasets: [
                  {
                     label: "France",
@@ -675,7 +675,7 @@ var myChart = new Chart(ctx, {
  var config_compost = {
             type: 'line',
             data: {
-                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
                 datasets: [
                  {
                     label: "France",
@@ -758,7 +758,7 @@ var myChart = new Chart(ctx, {
  var config_verre = {
             type: 'line',
             data: {
-                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
                 datasets: [
                  {
                     label: "France",
@@ -841,7 +841,7 @@ var myChart = new Chart(ctx, {
  var config_textile = {
             type: 'line',
             data: {
-                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
                 datasets: [
                  {
                     label: "France",
@@ -924,7 +924,7 @@ var myChart = new Chart(ctx, {
  var config_marron = {
             type: 'line',
             data: {
-                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "31 avril"],
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
                 datasets: [
                  {
                     label: "France",

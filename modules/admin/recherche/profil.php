@@ -19,6 +19,34 @@ $recherche = new recherche($connect);
 // recupération des information d'un membre
 $data=$recherche->InfosMembre($_GET['id_membre'],$_GET['email']); 
 
+// calcul nombre personne du foyer
+ $NbrPersFoyer=$recherche->InfosMembre2($_GET['id_membre']);
+ $NbrPersFoyer=$NbrPersFoyer['foyer_adulte']+$NbrPersFoyer['foyer_enfant']+$NbrPersFoyer['foyer_bebe'];
+ 
+ // conso sur une periode de 15 jours / habitant 
+ $OM_agglo=257/365*15;
+ $OM_fr=269/365*15;
+ $tri_agglo=55/365*15;
+ $tri_fr=47/365*15;
+ //$compost_agglo=257/365*15;
+ //$compost_fr=269/365*15;
+ $verre_agglo=26/365*15;
+ $verre_fr=29/365*15;
+ $textile_agglo=3.6/365*15;
+ $textile_fr=2.5/365*15;
+ //$marron_agglo=257/365*15;
+ //$marron_fr=269/365*15;
+ 
+ function dataset($type_dechet,$NbrPersFoyer)
+ {
+     
+$data=$type_dechet*$NbrPersFoyer;
+$data=number_format($data, 4, '.', '');
+$data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data;
+     
+ return $data;
+ }   
+
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +87,8 @@ $data=$recherche->InfosMembre($_GET['id_membre'],$_GET['email']);
   <script src="../../../plugins/jquery-ui-1.11.4/jquery-ui.js"></script>
   
    <link rel="stylesheet" href="../../../plugins/sweetalert2/sweetalert2.min.css">
+   
+    <script src="../../../plugins/Chart.js-master/dist/Chart.js"></script>
 
 
   </head>
@@ -320,28 +350,7 @@ echo"
           </div><!-- /.row -->
           
           
-            <div class="row">
-            
-            <div class="col-md-12">
-              <div class="box box-primary collapsed-box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Statistiques </h3>
-              <div class="box-tools pull-right">
-                   <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            
-  <div class="box-body">
-      
-       </div></div>
-
-
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-          
+           
           
                 <div class="row">
             
@@ -381,6 +390,176 @@ echo"
 
             </div><!-- /.col -->
           </div><!-- /.row -->
+          
+          
+              <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Ordures ménagéres</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button> 
+                    <!-- <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                 
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                	
+             <div class="row">
+               <canvas id="canvas_OM"></canvas>
+             
+             </div>
+  	
+            
+                	   </div>
+           
+                 
+    </div>
+          
+            </div></div>   
+                
+                  <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Tri sélectif</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button> 
+                    <!-- <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                 
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                	
+             <div class="row">
+                 <canvas id="canvas_tri"></canvas>
+             
+             </div>
+  	
+            
+                	   </div>
+           
+                 
+    </div>
+          
+            </div></div>   
+                
+                  <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Compost</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button> 
+                    <!-- <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                 
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                	
+             <div class="row">
+                <canvas id="canvas_compost"></canvas>
+             
+             </div>
+  	
+            
+                	   </div>
+           
+                 
+    </div>
+          
+            </div></div>   
+                
+                  <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Verre</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button> 
+                    <!-- <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                 
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                	
+             <div class="row">
+                <canvas id="canvas_verre"></canvas>
+             
+             </div>
+  	
+            
+                	   </div>
+           
+                 
+    </div>
+          
+            </div></div>   
+                
+                  <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Textile</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button> 
+                    <!-- <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                 
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                	
+             <div class="row">
+                <canvas id="canvas_textile"></canvas>
+             
+             </div>
+  	
+            
+                	   </div>
+           
+                 
+    </div>
+          
+            </div></div>   
+                
+                
+                   <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary collapsed-box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Bac marron</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button> 
+                    <!-- <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                 
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                	
+             <div class="row">
+                <canvas id="canvas_marron"></canvas>
+             
+             </div>
+  	
+            
+                	   </div>
+           
+                 
+    </div>
+          
+            </div></div>  
+                
+                
+          
+          
+          
+          
           
           
         </section><!-- /.content -->
@@ -457,6 +636,504 @@ echo"
     </script>
  
 
+<script>
+     
+
+ var config_OM = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [<?php echo dataset($OM_fr,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [<?php echo dataset($OM_agglo,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [<?php echo $recherche->datasetMembre($_GET['id_membre'],'ordures_menageres');?>],
+                    borderColor :'rgba(183,192,210,0.9)',
+                    backgroundColor : 'rgba(183,192,210,0.75)',
+                    pointBorderColor :'rgba(183,192,210,0.9)',
+                    pointBackgroundColor : 'rgba(183,192,210,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Ordures ménagéres pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 50,
+                        }
+                    }]
+                }
+            }
+        };
+
+ var ctx_OM          = $('#canvas_OM').get(0).getContext('2d')
+ var ChartOM                = new Chart(ctx_OM, config_OM);
+   
+ </script>
+    
+<script>
+     
+
+ var config_tri = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [<?php echo dataset($tri_fr,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [<?php echo dataset($tri_agglo,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [<?php echo $recherche->datasetMembre($_GET['id_membre'],'tri_selectif');?>],
+                    borderColor :'rgba(235,145,0,0.9)',
+                    backgroundColor : 'rgba(235,145,0,0.75)',
+                    pointBorderColor :'rgba(235,145,0,0.9)',
+                    pointBackgroundColor : 'rgba(235,145,0,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Tri selectif pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 12,
+                        }
+                    }]
+                }
+            }
+        };
+
+ var ctx_tri         = $('#canvas_tri').get(0).getContext('2d')
+ var Charttri                = new Chart(ctx_tri, config_tri);
+   
+ </script>
+
+  
+<script>
+     
+
+ var config_compost = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [<?php echo $recherche->datasetMembre($_GET['id_membre'],'compost');?>],
+                    borderColor :'rgba(0,153,84,0.9)',
+                    backgroundColor : 'rgba(0,153,84,0.75)',
+                    pointBorderColor :'rgba(0,153,84,0.9)',
+                    pointBackgroundColor : 'rgba(0,153,84,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Compost pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 20,
+                        }
+                    }]
+                }
+            }
+        };
+
+ var ctx_compost        = $('#canvas_compost').get(0).getContext('2d')
+ var Chartcompost               = new Chart(ctx_compost, config_compost);
+   
+ </script>
+  
+<script>
+     
+
+ var config_verre = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [<?php echo dataset($verre_fr,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [<?php echo dataset($verre_agglo,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de verre",
+                    data: [<?php echo $recherche->datasetMembre($_GET['id_membre'],'verre');?>],
+                    borderColor :'rgba(25,136,200,0.9)',
+                    backgroundColor : 'rgba(25,136,200,0.75)',
+                    pointBorderColor :'rgba(25,136,200,0.9)',
+                    pointBackgroundColor : 'rgba(25,136,200,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Verre pour un foyer de <?php echo $NbrPersFoyer; ?> personnes  en kg'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 6,
+                        }
+                    }]
+                }
+            }
+        };
+
+ var ctx_verre         = $('#canvas_verre').get(0).getContext('2d')
+ var Chartverre                = new Chart(ctx_verre, config_verre);
+   
+ </script>
+   
+<script>
+     
+
+ var config_textile = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [<?php echo dataset($textile_fr,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [<?php echo dataset($textile_agglo,$NbrPersFoyer);?>],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de textile",
+                    data: [<?php echo $recherche->datasetMembre($_GET['id_membre'],'dechetterie');?>],
+                    borderColor :'rgba(0,171,214,0.9)',
+                    backgroundColor : 'rgba(0,171,214,0.75)',
+                    pointBorderColor :'rgba(0,171,214,0.9)',
+                    pointBackgroundColor : 'rgba(0,171,214,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Textile pour un foyer de <?php echo $NbrPersFoyer; ?> personnes  en kg'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 1,
+                        }
+                    }]
+                }
+            }
+        };
+
+ var ctx_textile         = $('#canvas_textile').get(0).getContext('2d')
+ var Charttextile               = new Chart(ctx_textile, config_textile);
+   
+ </script>
+   
+<script>
+     
+
+ var config_marron = {
+            type: 'line',
+            data: {
+                labels: ["15 déc.", "31 déc.", "15 janv.", "31 janv.", "15 fév.", "28 fév.", "15 mars", "31 mars", "15 avril", "30 avril"],
+                datasets: [
+                 {
+                    label: "France",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(100, 100, 100, 1)',
+                    backgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderColor :'rgba(100, 100, 100, 1)',
+                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    pointBorderWidth : 1
+                },    
+                {
+                    label: "Agglo Pau Béarn Pyrénées",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    fill: false,
+                    borderDash: [5, 5],
+                    borderColor :'rgba(160, 160, 160, 1)',
+                    backgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderColor :'rgba(160, 160, 160, 1)',
+                    pointBackgroundColor : 'rgba(160, 160, 160, 1)',
+                    pointBorderWidth : 1
+                }, 
+                {
+                    label: "Vos production de déchets",
+                    data: [<?php echo $recherche->datasetMembre($_GET['id_membre'],'bac_marron');?>],
+                    borderColor :'rgba(77,36,0,0.9)',
+                    backgroundColor : 'rgba(77,36,0,0.75)',
+                    pointBorderColor :'rgba(77,36,0,0.9)',
+                    pointBackgroundColor : 'rgba(77,36,0,0.9)',
+                    pointBorderWidth : 1
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Bac marron pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                      
+                    }
+                },
+                hover: {
+                    mode: 'dataset'
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                        ticks: {
+                            suggestedMin:0,
+                            suggestedMax: 20,
+                        }
+                    }]
+                }
+            }
+        };
+
+ var ctx_marron         = $('#canvas_marron').get(0).getContext('2d')
+ var Chartmarron                = new Chart(ctx_marron, config_marron);
+   
+ </script>
 
   </body>
 </html>
