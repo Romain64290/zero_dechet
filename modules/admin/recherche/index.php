@@ -137,7 +137,7 @@ $compteur=1;
 echo "
 <tr>
             <td>$compteur</td>
-            <td> $nom_membre</td>
+            <td> $nom_membre <div style=\"color:red\">[Alerte]</div></td>
             <td>$prenom_membre</td>
             <td>$telephone</td>
             <td>$email</td>

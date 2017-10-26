@@ -16,8 +16,34 @@ require(__DIR__ .'/model.inc.php');
 $connect = new connection();
 $dashboard = new dashboard($connect);
 
-
-
+ // calcul nombre personne du foyer
+ $NbrPersFoyer=$dashboard->InfosMembre($_SESSION['id_membre']);
+ $NbrPersFoyer=$NbrPersFoyer['foyer_adulte']+$NbrPersFoyer['foyer_enfant']+$NbrPersFoyer['foyer_bebe'];
+ 
+ // conso sur une periode de 15 jours / habitant 
+ $OM_agglo=257/365*15;
+ $OM_fr=269/365*15;
+ $tri_agglo=55/365*15;
+ $tri_fr=47/365*15;
+ //$compost_agglo=257/365*15;
+ //$compost_fr=269/365*15;
+ $verre_agglo=26/365*15;
+ $verre_fr=29/365*15;
+ $textile_agglo=3.6/365*15;
+ $textile_fr=2.5/365*15;
+ //$marron_agglo=257/365*15;
+ //$marron_fr=269/365*15;
+ 
+ function dataset($type_dechet,$NbrPersFoyer)
+ {
+     
+$data=$type_dechet*$NbrPersFoyer;
+$data=number_format($data, 4, '.', '');
+$data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data;
+     
+ return $data;
+ }   
+ 
 ?>
 
 
@@ -486,7 +512,7 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    data: [<?php echo dataset($OM_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -497,7 +523,7 @@ var myChart = new Chart(ctx, {
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    data: [<?php echo dataset($OM_agglo,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -508,7 +534,7 @@ var myChart = new Chart(ctx, {
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'ordures_menageres');?>],
                     borderColor :'rgba(183,192,210,0.9)',
                     backgroundColor : 'rgba(183,192,210,0.75)',
                     pointBorderColor :'rgba(183,192,210,0.9)',
@@ -520,7 +546,7 @@ var myChart = new Chart(ctx, {
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Ordures ménagéres pour un foyer de x personnes'
+                    text:'Ordures ménagéres pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -547,7 +573,7 @@ var myChart = new Chart(ctx, {
                         },
                         ticks: {
                             suggestedMin:0,
-                            suggestedMax: 150,
+                            suggestedMax: 50,
                         }
                     }]
                 }
@@ -569,7 +595,7 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    data: [<?php echo dataset($tri_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -580,7 +606,7 @@ var myChart = new Chart(ctx, {
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    data: [<?php echo dataset($tri_agglo,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -591,7 +617,7 @@ var myChart = new Chart(ctx, {
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'tri_selectif');?>],
                     borderColor :'rgba(235,145,0,0.9)',
                     backgroundColor : 'rgba(235,145,0,0.75)',
                     pointBorderColor :'rgba(235,145,0,0.9)',
@@ -603,7 +629,7 @@ var myChart = new Chart(ctx, {
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Tri selectif pour un foyer de x personnes'
+                    text:'Tri selectif pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -630,7 +656,7 @@ var myChart = new Chart(ctx, {
                         },
                         ticks: {
                             suggestedMin:0,
-                            suggestedMax: 150,
+                            suggestedMax: 12,
                         }
                     }]
                 }
@@ -653,7 +679,7 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -664,7 +690,7 @@ var myChart = new Chart(ctx, {
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -675,7 +701,7 @@ var myChart = new Chart(ctx, {
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'compost');?>],
                     borderColor :'rgba(0,153,84,0.9)',
                     backgroundColor : 'rgba(0,153,84,0.75)',
                     pointBorderColor :'rgba(0,153,84,0.9)',
@@ -687,7 +713,7 @@ var myChart = new Chart(ctx, {
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Compost pour un foyer de x personnes'
+                    text:'Compost pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -714,7 +740,7 @@ var myChart = new Chart(ctx, {
                         },
                         ticks: {
                             suggestedMin:0,
-                            suggestedMax: 150,
+                            suggestedMax: 20,
                         }
                     }]
                 }
@@ -736,7 +762,7 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    data: [<?php echo dataset($verre_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -747,7 +773,7 @@ var myChart = new Chart(ctx, {
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    data: [<?php echo dataset($verre_agglo,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -757,8 +783,8 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
-                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    label: "Vos production de verre",
+                    data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'verre');?>],
                     borderColor :'rgba(25,136,200,0.9)',
                     backgroundColor : 'rgba(25,136,200,0.75)',
                     pointBorderColor :'rgba(25,136,200,0.9)',
@@ -770,7 +796,7 @@ var myChart = new Chart(ctx, {
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Verre pour un foyer de x personnes'
+                    text:'Verre pour un foyer de <?php echo $NbrPersFoyer; ?> personnes  en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -797,7 +823,7 @@ var myChart = new Chart(ctx, {
                         },
                         ticks: {
                             suggestedMin:0,
-                            suggestedMax: 150,
+                            suggestedMax: 6,
                         }
                     }]
                 }
@@ -819,7 +845,7 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    data: [<?php echo dataset($textile_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -830,7 +856,7 @@ var myChart = new Chart(ctx, {
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    data: [<?php echo dataset($textile_agglo,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -840,8 +866,8 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
-                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    label: "Vos production de textile",
+                    data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'dechetterie');?>],
                     borderColor :'rgba(0,171,214,0.9)',
                     backgroundColor : 'rgba(0,171,214,0.75)',
                     pointBorderColor :'rgba(0,171,214,0.9)',
@@ -853,7 +879,7 @@ var myChart = new Chart(ctx, {
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Textile pour un foyer de x personnes'
+                    text:'Textile pour un foyer de <?php echo $NbrPersFoyer; ?> personnes  en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -880,7 +906,7 @@ var myChart = new Chart(ctx, {
                         },
                         ticks: {
                             suggestedMin:0,
-                            suggestedMax: 150,
+                            suggestedMax: 1,
                         }
                     }]
                 }
@@ -902,7 +928,7 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [120, 120, 120, 120, 120, 120, 120, 120, 120, 120],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -913,7 +939,7 @@ var myChart = new Chart(ctx, {
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -924,7 +950,7 @@ var myChart = new Chart(ctx, {
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [120, 100, 90, 80, 85, 72, 50,60, 65,40],
+                    data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'bac_marron');?>],
                     borderColor :'rgba(77,36,0,0.9)',
                     backgroundColor : 'rgba(77,36,0,0.75)',
                     pointBorderColor :'rgba(77,36,0,0.9)',
@@ -936,7 +962,7 @@ var myChart = new Chart(ctx, {
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Bac marron pour un foyer de x personnes'
+                    text:'Bac marron pour un foyer de <?php echo $NbrPersFoyer; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -963,7 +989,7 @@ var myChart = new Chart(ctx, {
                         },
                         ticks: {
                             suggestedMin:0,
-                            suggestedMax: 150,
+                            suggestedMax: 20,
                         }
                     }]
                 }
