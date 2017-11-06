@@ -167,14 +167,14 @@ h6,
 }
 /* General Links */
 a {
-  color: #3c8dbc;
+  color: #d5683c;
 }
 a:hover,
 a:active,
 a:focus {
   outline: none;
   text-decoration: none;
-  color: #72afd2;
+  color: #d5896b;
 }
 /* Page Header */
 .page-header {
@@ -2217,13 +2217,13 @@ a:focus {
   background-color: #e7e7e7;
 }
 .btn-primary {
-  background-color: #3c8dbc;
-  border-color: #367fa9;
+    background-color: #6db336;
+    border-color: #62a231;
 }
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary.hover {
-  background-color: #367fa9;
+  background-color: #2a7809;
 }
 .btn-success {
   background-color: #00a65a;
@@ -3183,7 +3183,7 @@ table.text-center th {
 }
 .login-page,
 .register-page {
-  background: #d2d6de;
+  background: #f8f5df !important;
 }
 .login-box,
 .register-box {

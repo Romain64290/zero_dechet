@@ -291,7 +291,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-               <canvas id="canvas_OM"></canvas>
+               <canvas id="canvas_OM" height="100px"></canvas>
              
              </div>
   	
@@ -318,7 +318,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-                 <canvas id="canvas_tri"></canvas>
+                 <canvas id="canvas_tri" height="100px"></canvas>
              
              </div>
   	
@@ -345,7 +345,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_compost"></canvas>
+                <canvas id="canvas_compost" height="100px"></canvas>
              
              </div>
   	
@@ -372,7 +372,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_verre"></canvas>
+                <canvas id="canvas_verre" height="100px"></canvas>
              
              </div>
   	
@@ -399,7 +399,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_textile"></canvas>
+                <canvas id="canvas_textile" height="100px"></canvas>
              
              </div>
   	
@@ -427,7 +427,7 @@ echo"
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_marron"></canvas>
+                <canvas id="canvas_marron" height="100px"></canvas>
              
              </div>
   	

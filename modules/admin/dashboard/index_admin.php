@@ -17,8 +17,37 @@ require(__DIR__ .'/model.inc.php');
 $connect = new connection();
 $dashboard = new dashboard($connect);
 
-// verifie si l'annee des stats est selectionné ou pas
-$annee_stats = empty($_POST['annee_stats']) ? date("Y") : $_POST['annee_stats'];
+
+// calcul nombre personne du foyer
+ $NbreMembre=$dashboard->NbreMembre();
+ $NbreMembre=$NbreMembre['nbr'];
+ 
+ // conso sur une periode de 15 jours / habitant 
+ $OM_agglo=257/365*15;
+ $OM_fr=269/365*15;
+ $tri_agglo=55/365*15;
+ $tri_fr=47/365*15;
+ //$compost_agglo=257/365*15;
+ //$compost_fr=269/365*15;
+ $verre_agglo=26/365*15;
+ $verre_fr=29/365*15;
+ $textile_agglo=3.6/365*15;
+ $textile_fr=2.5/365*15;
+ //$marron_agglo=257/365*15;
+ //$marron_fr=269/365*15;
+ 
+ function dataset($type_dechet,$NbreMembre)
+ {
+     
+$data=$type_dechet*$NbreMembre;
+$data=number_format($data, 4, '.', '');
+$data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data;
+     
+ return $data;
+ }   
+
+
+
 
 ?>
 
@@ -100,7 +129,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 <div class="box-body">
                 	
              <div class="row">
-               <canvas id="canvas_OM"></canvas>
+                 <canvas id="canvas_OM" height="100px"></canvas>
              
              </div>
   	
@@ -127,7 +156,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 <div class="box-body">
                 	
              <div class="row">
-                 <canvas id="canvas_tri"></canvas>
+                 <canvas id="canvas_tri" height="100px"></canvas>
              
              </div>
   	
@@ -154,7 +183,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_compost"></canvas>
+                <canvas id="canvas_compost" height="100px"></canvas>
              
              </div>
   	
@@ -181,7 +210,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_verre"></canvas>
+                <canvas id="canvas_verre" height="100px"></canvas>
              
              </div>
   	
@@ -208,7 +237,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_textile"></canvas>
+                <canvas id="canvas_textile" height="100px"></canvas>
              
              </div>
   	
@@ -236,7 +265,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 <div class="box-body">
                 	
              <div class="row">
-                <canvas id="canvas_marron"></canvas>
+                <canvas id="canvas_marron" height="100px"></canvas>
              
              </div></div></div></div></div>
   	
@@ -273,7 +302,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 datasets: [
                  {
                     label: "France",
-                    data: [22.1096,22.1096,22.1096,22.1096,22.1096,22.1096,22.1096,22.1096,22.1096,22.1096],
+                    data: [<?php echo dataset($OM_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -284,7 +313,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [21.1233,21.1233,21.1233,21.1233,21.1233,21.1233,21.1233,21.1233,21.1233,21.1233],
+                    data: [<?php echo dataset($OM_agglo,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -295,7 +324,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [25.0000,19.0000,12.0000,15.0000,20.0000,11.0000,12.0000,10.0000,0.0000,0.0000],
+                    data: [<?php echo $dashboard->datasetMembres('ordures_menageres');?>],
                     borderColor :'rgba(183,192,210,0.9)',
                     backgroundColor : 'rgba(183,192,210,0.75)',
                     pointBorderColor :'rgba(183,192,210,0.9)',
@@ -307,7 +336,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Ordures ménagéres pour un foyer de 2 personnes en kg'
+                    text:'Ordures ménagéres <?php echo $NbreMembre; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -334,7 +363,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                         },
                         ticks: {
                             suggestedMin:0,
-                            suggestedMax: 50,
+                            suggestedMax: 3000,
                         }
                     }]
                 }
@@ -356,7 +385,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 datasets: [
                  {
                     label: "France",
-                    data: [3.8630,3.8630,3.8630,3.8630,3.8630,3.8630,3.8630,3.8630,3.8630,3.8630],
+                    data: [<?php echo dataset($tri_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -367,7 +396,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [4.5205,4.5205,4.5205,4.5205,4.5205,4.5205,4.5205,4.5205,4.5205,4.5205],
+                    data: [<?php echo dataset($tri_agglo,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -378,7 +407,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [5.0000,0.0000,3.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000],
+                    data: [<?php echo $dashboard->datasetMembres('tri_selectif');?>],
                     borderColor :'rgba(235,145,0,0.9)',
                     backgroundColor : 'rgba(235,145,0,0.75)',
                     pointBorderColor :'rgba(235,145,0,0.9)',
@@ -390,7 +419,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Tri selectif pour un foyer de 2 personnes en kg'
+                    text:'Tri selectif pour <?php echo $NbreMembre; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -462,7 +491,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [0.0000,4.0000,0.0000,5.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000],
+                    data: [<?php echo $dashboard->datasetMembres('compost');?>],
                     borderColor :'rgba(0,153,84,0.9)',
                     backgroundColor : 'rgba(0,153,84,0.75)',
                     pointBorderColor :'rgba(0,153,84,0.9)',
@@ -474,7 +503,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Compost pour un foyer de 2 personnes en kg'
+                    text:'Compost pour <?php echo $NbreMembre; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -523,7 +552,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 datasets: [
                  {
                     label: "France",
-                    data: [2.3836,2.3836,2.3836,2.3836,2.3836,2.3836,2.3836,2.3836,2.3836,2.3836],
+                    data: [<?php echo dataset($verre_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -534,7 +563,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [2.1370,2.1370,2.1370,2.1370,2.1370,2.1370,2.1370,2.1370,2.1370,2.1370],
+                    data: [<?php echo dataset($verre_agglo,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -545,7 +574,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 }, 
                 {
                     label: "Vos production de verre",
-                    data: [0.0000,6.0000,0.0000,0.2000,0.0000,0.0000,0.0000,0.0000,0.0000,3.0000],
+                    data: [<?php echo $dashboard->datasetMembres('verre');?>],
                     borderColor :'rgba(25,136,200,0.9)',
                     backgroundColor : 'rgba(25,136,200,0.75)',
                     pointBorderColor :'rgba(25,136,200,0.9)',
@@ -557,7 +586,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Verre pour un foyer de 2 personnes  en kg'
+                    text:'Verre pour <?php echo $NbreMembre; ?> personnes  en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -606,7 +635,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 datasets: [
                  {
                     label: "France",
-                    data: [0.2055,0.2055,0.2055,0.2055,0.2055,0.2055,0.2055,0.2055,0.2055,0.2055],
+                    data: [<?php echo dataset($textile_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(100, 100, 100, 1)',
@@ -617,7 +646,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [0.2959,0.2959,0.2959,0.2959,0.2959,0.2959,0.2959,0.2959,0.2959,0.2959],
+                    data: [<?php echo dataset($textile_agglo,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -628,7 +657,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 }, 
                 {
                     label: "Vos production de textile",
-                    data: [0.0000,3.0000,0.0000,0.1000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000],
+                    data: [<?php echo $dashboard->datasetMembres('dechetterie');?>],
                     borderColor :'rgba(0,171,214,0.9)',
                     backgroundColor : 'rgba(0,171,214,0.75)',
                     pointBorderColor :'rgba(0,171,214,0.9)',
@@ -640,7 +669,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Textile pour un foyer de 2 personnes  en kg'
+                    text:'Textile pour <?php echo $NbreMembre; ?> personnes  en kg'
                 },
                 tooltips: {
                     mode: 'label',
@@ -711,7 +740,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 }, 
                 {
                     label: "Vos production de déchets",
-                    data: [0.0000,10.0000,0.0000,4.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000],
+                    data: [<?php echo $dashboard->datasetMembres('bac_marron');?>],
                     borderColor :'rgba(77,36,0,0.9)',
                     backgroundColor : 'rgba(77,36,0,0.75)',
                     pointBorderColor :'rgba(77,36,0,0.9)',
@@ -723,7 +752,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Bac marron pour un foyer de 2 personnes en kg'
+                    text:'Bac marron pour  <?php echo $NbreMembre; ?> personnes en kg'
                 },
                 tooltips: {
                     mode: 'label',
