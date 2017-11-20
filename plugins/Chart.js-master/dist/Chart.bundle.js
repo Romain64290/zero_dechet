@@ -5688,6 +5688,10 @@ module.exports = function(Chart) {
 
 		return new Chart(context, config);
 	};
+        
+        
+    
+        
 
 };
 },{}],9:[function(require,module,exports){
@@ -11096,6 +11100,10 @@ module.exports = function(Chart) {
 			}
 		}
 	});
+        
+    
+        
+        
 };
 
 },{}],31:[function(require,module,exports){

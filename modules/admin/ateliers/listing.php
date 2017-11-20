@@ -116,9 +116,10 @@ foreach($afficheReunion as $key){
 			$date_reunion=$key->date_reunion;
 			$nom=htmlspecialchars($key->nom_reunion);
 			$lien_map=htmlspecialchars($key->lien_map);
-			$nbr_participants=$key->nbr_participants;
+			//$nbr_participants=$key->nbr_participants;
 			$limite_participants=$key->limite_participants;
 			
+                        $nbr_participants=$atelier->nbr_participants($id_reunion);
 					
 			if($limite_participants==0){$limite_participants="Illimité";}		
 					

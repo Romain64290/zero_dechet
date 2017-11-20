@@ -290,7 +290,7 @@ $select->execute();
  function ajouteReponse($presence,$id_reunion,$id_membre)
   {
             
- if($presence==1){
+/* if($presence==1){
      
 //incrementation du nombre d'utilisateur dans la table reunion
 	try{	
@@ -307,7 +307,7 @@ $update->execute();
      
      
  }
-     
+   */  
 		try {
 $insert = $this->con->prepare('INSERT INTO membre_has_reunion (id_membre,id_reunion, presence)
 VALUES(:id_membre,:id_reunion, :presence)');
@@ -338,7 +338,7 @@ $execute=$insert->execute();
  
  function ModifReponse($presence,$id_reunion,$id_membre)
   {
-   
+/*   
    if($presence==1){
      
 //incrementation du nombre d'utilisateur dans la table reunion
@@ -374,7 +374,7 @@ $update->execute();
      
      
  }
-     
+ */    
  
 		try {
 $update = $this->con->prepare('UPDATE membre_has_reunion SET presence=:presence
@@ -431,6 +431,37 @@ function afficheInscrits($id_reunion)
  return $data;
   } 
 
+  /**************************************************************************
+ Affichage le nombre d'inscrits à une reunion
+***************************************************************************/  
+
+function nbr_participants($id_reunion)
+  {
+  
+  try{
+    	
+		$select = $this->con->prepare('SELECT COUNT(*) as nbr
+		FROM membre_has_reunion
+		WHERE membre_has_reunion.id_reunion=:id_reunion AND presence=1
+               ');	
+		
+                $select->bindParam(':id_reunion', $id_reunion, PDO::PARAM_INT);
+		$select->execute();
+		
+		$data = $select->fetch();
+		
+		}
+		
+	 catch (PDOException $e){
+       echo $e->getMessage() . " <br><b>Erreur lors de l'affichage des inscrits à une réunion</b>\n";
+	throw $e;
+        exit;
+    }
+	 
+$quantite=$data['nbr'];
+		
+	      return $quantite;
+  } 
    
   /***********************************************************************
  * Suppression d'un utilisateur

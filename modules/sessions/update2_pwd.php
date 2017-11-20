@@ -35,7 +35,7 @@ $update_pwd=$session->updatePWD($id_membre,$token,$email,$repassword);
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../plugins/ionicons-2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
     

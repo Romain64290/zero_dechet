@@ -31,7 +31,7 @@ if($token=="" OR $token==0){exit;}else{
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../plugins/ionicons-2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.css">
    
     
    
@@ -42,13 +42,19 @@ if($token=="" OR $token==0){exit;}else{
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  <style> 
+      .login-box, .register-box {
+    width: 400px;
+    margin: 3% auto;
+}
+    </style>
   </head>
   <body class="hold-transition register-page">
     <div class="register-box">
       <div class="register-logo"></div>
 
       <div class="register-box-body">
-      	<img src="../../admin/<?php echo LOGO_ADMIN; ?>" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto">
+      	<img src="../../dist/img/logo_zero.jpg" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto">
         <p class="login-box-msg">Votre email : <?php echo $email; ?><br>Veuillez saisir un nouveau mot de passe</p>
         <form name="formulaire" role="form" data-toggle="validator" action="update2_pwd.php" method="post" data-disable="false">
           

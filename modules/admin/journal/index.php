@@ -89,7 +89,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
     <!-- timeline time label -->
     <li class="time-label">
         <span class="bg-orange">
-            13 Oct. 2017
+            <?php echo strftime("%e %b %G"); ?>
         </span>
     </li>
     <!-- /.timeline-label -->

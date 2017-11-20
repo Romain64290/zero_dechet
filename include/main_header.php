@@ -46,15 +46,14 @@
                   
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profil</a>
-                    </div>
-                    <div class="pull-right">
+                   
+                    <div class="pull-center">
                       <a href="../../../modules/sessions/logout.php" class="btn btn-default btn-flat">Déconnexion</a>
                     </div>
                   </li>
                 </ul>
               </li>
+              </ul>
           </div>
         </nav>
       </header>

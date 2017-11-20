@@ -66,7 +66,7 @@ $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : NULL;
       </div> /.login-logo -->
 
       <div class="login-box-body">
-          <img src="logo_zero.jpg" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto"><br>
+          <img src="../dist/img/logo_zero.jpg" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto"><br>
         <p class="login-box-msg">Connectez-vous à votre espace personnel.</p>
         <form action="../modules/sessions/login.php" method="post">
           <div class="form-group has-feedback"> 
@@ -87,7 +87,7 @@ $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : NULL;
           </div>
         </form>
         <p>
-        <a href="../modules/sessions/forget_pwd.php">J'ai oublié mon mot de passe</a><br>
+        <a href="../modules/sessions/forget_pwd.php">J'ai oublié mon mot de passe !</a><br>
         <!-- <a href="../modules/sessions/register.php" class="text-center">Je souhaite m'inscrire</a><br> -->
         </p>
 	<p class="text-danger"><?php if($erreur==1){echo"Nom d'utilisateur ou mot de passe incorrect !";} ?></p>

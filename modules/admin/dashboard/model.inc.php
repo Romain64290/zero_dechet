@@ -127,12 +127,12 @@ $marron->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);
 $marron->execute();
 $datamarron = $marron->fetch();
 
-$dataOM=number_format($dataOM['nbr'], 4, '.', '');
-$datatri=number_format($datatri['nbr'], 4, '.', '');
-$datacompost=number_format($datacompost['nbr'], 4, '.', '');
-$dataverre=number_format($dataverre['nbr'], 4, '.', '');
-$datatextile=number_format($datatextile['nbr'], 4, '.', '');
-$datamarron=number_format($datamarron['nbr'], 4, '.', '');
+$dataOM=number_format($dataOM['nbr'], 3, '.', '');
+$datatri=number_format($datatri['nbr'], 3, '.', '');
+$datacompost=number_format($datacompost['nbr'], 3, '.', '');
+$dataverre=number_format($dataverre['nbr'], 3, '.', '');
+$datatextile=number_format($datatextile['nbr'], 3, '.', '');
+$datamarron=number_format($datamarron['nbr'], 3, '.', '');
 
 $data=$dataOM.",".$datatri.",".$datacompost.",".$dataverre.",".$datatextile.",".$datamarron;	
     
@@ -199,7 +199,7 @@ function projection($id_membre,$type_dechet)
  // Projection SUM / nbre personne / nbre jour * 365
  $projection=$result[$type_dechet]/$NbrPersFoyer/$nbr_jour*365;
  
- $projection=number_format($projection, 4, '.', '');
+ $projection=number_format($projection, 3, '.', '');
 
   return $projection;
   }
@@ -226,7 +226,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select1->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select1->execute();
   $data1 = $select1->fetch();
-  $data1=number_format($data1['nbr'], 4, '.', '');
+  $data1=number_format($data1['nbr'], 3, '.', '');
   
    // periode 2 (16/12 - 31/12)
  $select2 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -236,7 +236,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select2->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select2->execute();
   $data2 = $select2->fetch();
-  $data2=number_format($data2['nbr'], 4, '.', '');
+  $data2=number_format($data2['nbr'], 3, '.', '');
   
      // periode 3 (1/01 - 15/01)
  $select3 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -246,7 +246,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select3->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select3->execute();
   $data3 = $select3->fetch();
-  $data3=number_format($data3['nbr'], 4, '.', '');
+  $data3=number_format($data3['nbr'], 3, '.', '');
   
      // periode 4 (16/01 - 31/01)
  $select4 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -256,7 +256,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select4->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select4->execute();
   $data4 = $select4->fetch();
-  $data4=number_format($data4['nbr'], 4, '.', '');
+  $data4=number_format($data4['nbr'], 3, '.', '');
   
      // periode 5 (01/02 - 15/02)
  $select5 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -266,7 +266,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select5->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select5->execute();
   $data5 = $select5->fetch();
-  $data5=number_format($data5['nbr'], 4, '.', '');
+  $data5=number_format($data5['nbr'], 3, '.', '');
   
      // periode 6 (16/02 - 28/02)
  $select6 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -276,7 +276,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select6->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select6->execute();
   $data6 = $select6->fetch();
-  $data6=number_format($data6['nbr'], 4, '.', '');
+  $data6=number_format($data6['nbr'], 3, '.', '');
   
      // periode 7 (01/03 - 15/03)
  $select7 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -286,7 +286,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select7->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select7->execute();
   $data7 = $select7->fetch();
-  $data7=number_format($data7['nbr'], 4, '.', '');
+  $data7=number_format($data7['nbr'], 3, '.', '');
   
      // periode 8 (16/03 - 31/03)
  $select8 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -296,7 +296,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select8->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select8->execute();
   $data8 = $select8->fetch();
-  $data8=number_format($data8['nbr'], 4, '.', '');
+  $data8=number_format($data8['nbr'], 3, '.', '');
   
      // periode 9 (1/04 - 15/04)
  $select9 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -306,7 +306,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select9->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select9->execute();
   $data9 = $select2->fetch();
-  $data9=number_format($data9['nbr'], 4, '.', '');
+  $data9=number_format($data9['nbr'], 3, '.', '');
   
     // periode 10 (16/04 - 31/04)
  $select10 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -316,7 +316,7 @@ function datasetMembre($id_membre,$type_dechet)
   $select10->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select10->execute();
   $data10 = $select10->fetch();
-  $data10=number_format($data10['nbr'], 4, '.', '');
+  $data10=number_format($data10['nbr'], 3, '.', '');
     
     
     $data=$data1.",".$data2.",".$data3.",".$data4.",".$data5.",".$data6.",".$data7.",".$data8.",".$data9.",".$data10;
@@ -339,7 +339,7 @@ function datasetMembres($type_dechet)
  ");	
     $select1->execute();
   $data1 = $select1->fetch();
-  $data1=number_format($data1['nbr'], 4, '.', '');
+  $data1=number_format($data1['nbr'], 3, '.', '');
   
    // periode 2 (16/12 - 31/12)
  $select2 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -348,7 +348,7 @@ function datasetMembres($type_dechet)
  ");	
   $select2->execute();
   $data2 = $select2->fetch();
-  $data2=number_format($data2['nbr'], 4, '.', '');
+  $data2=number_format($data2['nbr'], 3, '.', '');
   
      // periode 3 (1/01 - 15/01)
  $select3 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -357,7 +357,7 @@ function datasetMembres($type_dechet)
  ");	
   $select3->execute();
   $data3 = $select3->fetch();
-  $data3=number_format($data3['nbr'], 4, '.', '');
+  $data3=number_format($data3['nbr'], 3, '.', '');
   
      // periode 4 (16/01 - 31/01)
  $select4 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -366,7 +366,7 @@ function datasetMembres($type_dechet)
  ");	
   $select4->execute();
   $data4 = $select4->fetch();
-  $data4=number_format($data4['nbr'], 4, '.', '');
+  $data4=number_format($data4['nbr'], 3, '.', '');
   
      // periode 5 (01/02 - 15/02)
  $select5 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -375,7 +375,7 @@ function datasetMembres($type_dechet)
  ");	
   $select5->execute();
   $data5 = $select5->fetch();
-  $data5=number_format($data5['nbr'], 4, '.', '');
+  $data5=number_format($data5['nbr'], 3, '.', '');
   
      // periode 6 (16/02 - 28/02)
  $select6 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -384,7 +384,7 @@ function datasetMembres($type_dechet)
  ");	
  $select6->execute();
   $data6 = $select6->fetch();
-  $data6=number_format($data6['nbr'], 4, '.', '');
+  $data6=number_format($data6['nbr'], 3, '.', '');
   
      // periode 7 (01/03 - 15/03)
  $select7 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -393,7 +393,7 @@ function datasetMembres($type_dechet)
  ");	
   $select7->execute();
   $data7 = $select7->fetch();
-  $data7=number_format($data7['nbr'], 4, '.', '');
+  $data7=number_format($data7['nbr'], 3, '.', '');
   
      // periode 8 (16/03 - 31/03)
  $select8 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -402,7 +402,7 @@ function datasetMembres($type_dechet)
  ");	
   $select8->execute();
   $data8 = $select8->fetch();
-  $data8=number_format($data8['nbr'], 4, '.', '');
+  $data8=number_format($data8['nbr'], 3, '.', '');
   
      // periode 9 (1/04 - 15/04)
  $select9 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -411,7 +411,7 @@ function datasetMembres($type_dechet)
  ");	
   $select9->execute();
   $data9 = $select2->fetch();
-  $data9=number_format($data9['nbr'], 4, '.', '');
+  $data9=number_format($data9['nbr'], 3, '.', '');
   
     // periode 10 (16/04 - 31/04)
  $select10 = $this->con->prepare("SELECT SUM(".$type_dechet.") AS nbr
@@ -420,7 +420,7 @@ function datasetMembres($type_dechet)
  ");	
   $select10->execute();
   $data10 = $select10->fetch();
-  $data10=number_format($data10['nbr'], 4, '.', '');
+  $data10=number_format($data10['nbr'], 3, '.', '');
     
     
     $data=$data1.",".$data2.",".$data3.",".$data4.",".$data5.",".$data6.",".$data7.",".$data8.",".$data9.",".$data10;

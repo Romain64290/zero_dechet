@@ -23,24 +23,24 @@ $dashboard = new dashboard($connect);
  $NbreMembre=$NbreMembre['nbr'];
  
  // conso sur une periode de 15 jours / habitant 
- $OM_agglo=257/365*15;
+ $OM_agglo=243/365*15;
  $OM_fr=269/365*15;
- $tri_agglo=55/365*15;
+ $tri_agglo=56/365*15;
  $tri_fr=47/365*15;
- //$compost_agglo=257/365*15;
- //$compost_fr=269/365*15;
- $verre_agglo=26/365*15;
+ $compost_agglo=66/365*15;
+ $compost_fr=60/365*15;
+ $verre_agglo=27/365*15;
  $verre_fr=29/365*15;
  $textile_agglo=3.6/365*15;
  $textile_fr=2.5/365*15;
- //$marron_agglo=257/365*15;
- //$marron_fr=269/365*15;
+ $marron_agglo=2/365*15;
+ $marron_fr=19/365*15;
  
  function dataset($type_dechet,$NbreMembre)
  {
      
 $data=$type_dechet*$NbreMembre;
-$data=number_format($data, 4, '.', '');
+$data=number_format($data, 3, '.', '');
 $data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data;
      
  return $data;
@@ -305,10 +305,10 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     data: [<?php echo dataset($OM_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -388,10 +388,10 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     data: [<?php echo dataset($tri_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -469,18 +469,18 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 datasets: [
                  {
                     label: "France",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($compost_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($compost_agglo,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -555,10 +555,10 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     data: [<?php echo dataset($verre_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -638,10 +638,10 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     data: [<?php echo dataset($textile_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -658,10 +658,10 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 {
                     label: "Vos production de textile",
                     data: [<?php echo $dashboard->datasetMembres('dechetterie');?>],
-                    borderColor :'rgba(0,171,214,0.9)',
-                    backgroundColor : 'rgba(0,171,214,0.75)',
-                    pointBorderColor :'rgba(0,171,214,0.9)',
-                    pointBackgroundColor : 'rgba(0,171,214,0.9)',
+                    borderColor :'rgba(165,0,11,0.9)',
+                    backgroundColor : 'rgba(165,0,11,0.75)',
+                    pointBorderColor :'rgba(165,0,11,0.9)',
+                    pointBackgroundColor : 'rgba(165,0,11,0.9)',
                     pointBorderWidth : 1
                 }]
             },
@@ -718,18 +718,18 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                 datasets: [
                  {
                     label: "France",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($marron_fr,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($marron_agglo,$NbreMembre);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',

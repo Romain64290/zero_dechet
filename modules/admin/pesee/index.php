@@ -373,7 +373,7 @@ echo"
        function suppPesee(id_pesee,date_pesee) {
   	  
   swal({
-  title: 'Etes vous sûr de vouloir supprimer cette pesées ?',
+  title: 'Etes vous sûr de vouloir supprimer cette pesée ?',
   text: ""+date_pesee,
   type: 'warning',
   showCancelButton: true,
@@ -410,7 +410,7 @@ maxDate: new Date(2018, 4 - 1, 31)
 function Ajout_ok() {
   	  
   swal({
-  title: 'Ajout de la pésée enregistrée !',
+  title: 'Ajout de la pesée enregistrée !',
   text: "Merci de votre participation",
   type: 'success',
 
@@ -423,7 +423,7 @@ function Ajout_ko() {
   	  
   swal({
   title: 'Ajout de la pesée refusée !',
-  text: "Attention de bien saisir uniqement des chiffres dans les pésées",
+  text: "Attention de bien saisir uniqement des chiffres dans les pesées",
   type: 'error',
 
 })

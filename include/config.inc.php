@@ -28,10 +28,8 @@
   // DATE DU JOUR (DATE TIME)
   define('DATETIME_JOUR', date('Y-m-d H:i:s'));
   
-  // From email dev
-  //define("FROM_EMAIL","bvnhgfhgfh@gmail.com");
-  // From email prod
-  define("FROM_EMAIL","NO-REPLY@agglo-pau.net");
+// From email prod
+  define("FROM_EMAIL","NO-REPLY@agglo-pau.fr");
   
   
   // Réglage des locales

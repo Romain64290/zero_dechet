@@ -21,24 +21,24 @@ $dashboard = new dashboard($connect);
  $NbrPersFoyer=$NbrPersFoyer['foyer_adulte']+$NbrPersFoyer['foyer_enfant']+$NbrPersFoyer['foyer_bebe'];
  
  // conso sur une periode de 15 jours / habitant 
- $OM_agglo=257/365*15;
+ $OM_agglo=243/365*15;
  $OM_fr=269/365*15;
- $tri_agglo=55/365*15;
+ $tri_agglo=56/365*15;
  $tri_fr=47/365*15;
- //$compost_agglo=257/365*15;
- //$compost_fr=269/365*15;
- $verre_agglo=26/365*15;
+ $compost_agglo=66/365*15;
+ $compost_fr=60/365*15;
+ $verre_agglo=27/365*15;
  $verre_fr=29/365*15;
  $textile_agglo=3.6/365*15;
  $textile_fr=2.5/365*15;
- //$marron_agglo=257/365*15;
- //$marron_fr=269/365*15;
+ $marron_agglo=2/365*15;
+ $marron_fr=19/365*15;
  
  function dataset($type_dechet,$NbrPersFoyer)
  {
      
 $data=$type_dechet*$NbrPersFoyer;
-$data=number_format($data, 4, '.', '');
+$data=number_format($data, 3, '.', '');
 $data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data;
      
  return $data;
@@ -51,8 +51,12 @@ $data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$dat
 
 <html>
   <head>
-    <meta charset="utf-8">
+ <!--   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=9"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
     <title><?php echo constant("TITLE"); ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -68,7 +72,8 @@ $data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$dat
     <link rel="stylesheet" href="../../../dist/css/skins/skin-blue.min.css">
      
     
-    <script src="../../../plugins/Chart.js-master/dist/Chart.js"></script>
+   <!-- <script src="../../../plugins/Chart.js-master/dist/Chart.js"></script> -->
+   <script src="../../../plugins/Chart.js-master/dist/Chart.bundle2.js"></script>
 
 <style>
 	
@@ -76,7 +81,12 @@ $data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$dat
     height: 60px;
    
 }	
-	
+
+.chart {
+            width: 100% !important;
+            max-width: 800px;
+            height: auto !important;
+}
 </style>
 
   </head>
@@ -129,7 +139,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                          <b>> <u>Cumul de vos pesées en Kg</u></b><br><br>
                     	<div class="chart-responsive">
                       	
-                        <canvas id="pieChart" height="150"></canvas>
+                         <canvas id="chart"></canvas> 
                         
                       </div><!-- ./chart-responsive -->
                     </div><!-- /.col -->
@@ -139,7 +149,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                         <li><i class="fa fa-circle-o text-yellow"></i> Tri séléctif</li>
                         <li><i class="fa fa-circle-o text-green"></i> Compost</li>
                         <li><i class="fa fa-circle-o text-blue"></i> Verre</li>
-                        <li><i class="fa fa-circle-o text-light-blue"></i> Textile</li>
+                        <li><i class="fa fa-circle-o text-red"></i> Textile</li>
                         <li><i class="fa fa-circle-o text-brown"></i> Bac marron</li>
                       </ul>
                     </div><!-- /.col -->
@@ -175,21 +185,21 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                         </tr>
                          <tr>
                             <td style=" text-align: center">Agglo</td>
-                            <td style=" text-align: center">257</td>
-                            <td style=" text-align: center" >55</td>
-                            <td style=" text-align: center">NR</td>
-                            <td style=" text-align: center">26</td>
+                            <td style=" text-align: center">243</td>
+                            <td style=" text-align: center" >56</td>
+                            <td style=" text-align: center">66</td>
+                            <td style=" text-align: center">27</td>
                             <td style=" text-align: center">3,6</td>
-                            <td style=" text-align: center">NR</td>
+                            <td style=" text-align: center">2</td>
                         </tr>
                          <tr>
                             <td style=" text-align: center">France</td>
                             <td style=" text-align: center">269</td>
                             <td style=" text-align: center" >47</td>
-                            <td style=" text-align: center">NR</td>
+                            <td style=" text-align: center">60</td>
                             <td style=" text-align: center">29</td>
                             <td style=" text-align: center">2,5</td>
-                            <td style=" text-align: center">NR</td>
+                            <td style=" text-align: center">19</td>
                         </tr>
                     </tbody>
                         </table>
@@ -466,8 +476,30 @@ echo"
     
        
     <script>
+        
+ Chart.plugins.register({
+	afterDraw: function(chart) {
+  	if (chart.data.datasets.length === 0) {
+    	// No data is present
+      var ctx = chart.chart.ctx;
+      var width = chart.chart.width;
+      var height = chart.chart.height
+      chart.clear();
+      
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = "16px normal 'Helvetica Nueue'";
+      ctx.fillText('Aucune donnée à afficher', width / 2, height / 2);
+      ctx.restore();
+    }
+  }
+});
+ 
+
+ 
     
-var ctx = document.getElementById("pieChart");
+var ctx = document.getElementById("chart");
 var myChart = new Chart(ctx, {
   type: 'doughnut',
     data : {
@@ -487,7 +519,7 @@ var myChart = new Chart(ctx, {
                 "#f39c12",
                 "#00a65a",
                 "#3c8dbc",
-                "#00c0ef",
+                "#a5000b",
                 "#582900"
             ]
            
@@ -495,7 +527,8 @@ var myChart = new Chart(ctx, {
         }]
 },
     options: {
-    animationSteps: 1000	
+    animationSteps: 1000,
+    legend : false
      }
 });
 
@@ -515,10 +548,10 @@ var myChart = new Chart(ctx, {
                     data: [<?php echo dataset($OM_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -598,10 +631,10 @@ var myChart = new Chart(ctx, {
                     data: [<?php echo dataset($tri_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -679,18 +712,18 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($compost_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($compost_agglo,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
@@ -765,10 +798,10 @@ var myChart = new Chart(ctx, {
                     data: [<?php echo dataset($verre_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -848,10 +881,10 @@ var myChart = new Chart(ctx, {
                     data: [<?php echo dataset($textile_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
@@ -868,10 +901,10 @@ var myChart = new Chart(ctx, {
                 {
                     label: "Vos production de textile",
                     data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'dechetterie');?>],
-                    borderColor :'rgba(0,171,214,0.9)',
-                    backgroundColor : 'rgba(0,171,214,0.75)',
-                    pointBorderColor :'rgba(0,171,214,0.9)',
-                    pointBackgroundColor : 'rgba(0,171,214,0.9)',
+                    borderColor :'rgba(165,0,11,0.9)',
+                    backgroundColor : 'rgba(165,0,11,0.75)',
+                    pointBorderColor :'rgba(165,0,11,0.9)',
+                    pointBackgroundColor : 'rgba(165,0,11,0.9)',
                     pointBorderWidth : 1
                 }]
             },
@@ -928,18 +961,18 @@ var myChart = new Chart(ctx, {
                 datasets: [
                  {
                     label: "France",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($marron_fr,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
-                    borderColor :'rgba(100, 100, 100, 1)',
-                    backgroundColor : 'rgba(100, 100, 100, 1)',
-                    pointBorderColor :'rgba(100, 100, 100, 1)',
-                    pointBackgroundColor : 'rgba(100, 100, 100, 1)',
+                    borderColor :'rgba(60, 60, 60, 1)',
+                    backgroundColor : 'rgba(60, 60, 60, 1)',
+                    pointBorderColor :'rgba(60, 60, 60, 1)',
+                    pointBackgroundColor : 'rgba(60, 60, 60, 1)',
                     pointBorderWidth : 1
                 },    
                 {
                     label: "Agglo Pau Béarn Pyrénées",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    data: [<?php echo dataset($marron_agglo,$NbrPersFoyer);?>],
                     fill: false,
                     borderDash: [5, 5],
                     borderColor :'rgba(160, 160, 160, 1)',
