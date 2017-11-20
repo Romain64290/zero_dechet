@@ -566,7 +566,7 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'ordures_menageres');?>],
                     borderColor :'rgba(183,192,210,0.9)',
                     backgroundColor : 'rgba(183,192,210,0.75)',
@@ -649,7 +649,7 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'tri_selectif');?>],
                     borderColor :'rgba(235,145,0,0.9)',
                     backgroundColor : 'rgba(235,145,0,0.75)',
@@ -733,7 +733,7 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'compost');?>],
                     borderColor :'rgba(0,153,84,0.9)',
                     backgroundColor : 'rgba(0,153,84,0.75)',
@@ -816,7 +816,7 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de verre",
+                    label: "Vos productions de verre",
                     data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'verre');?>],
                     borderColor :'rgba(25,136,200,0.9)',
                     backgroundColor : 'rgba(25,136,200,0.75)',
@@ -899,7 +899,7 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de textile",
+                    label: "Vos productions de textile",
                     data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'dechetterie');?>],
                     borderColor :'rgba(165,0,11,0.9)',
                     backgroundColor : 'rgba(165,0,11,0.75)',
@@ -982,7 +982,7 @@ var myChart = new Chart(ctx, {
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembre($_SESSION['id_membre'],'bac_marron');?>],
                     borderColor :'rgba(77,36,0,0.9)',
                     backgroundColor : 'rgba(77,36,0,0.75)',

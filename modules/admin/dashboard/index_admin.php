@@ -73,7 +73,8 @@ $data=$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$data.",".$dat
     <link rel="stylesheet" href="../../../dist/css/skins/skin-blue.min.css">
      
     
-    <script src="../../../plugins/Chart.js-master/dist/Chart.js"></script>
+   <!-- <script src="../../../plugins/Chart.js-master/dist/Chart.js"></script> -->
+   <script src="../../../plugins/Chart.js-master/dist/Chart.bundle2.js"></script>
 
 <style>
 	
@@ -323,7 +324,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembres('ordures_menageres');?>],
                     borderColor :'rgba(183,192,210,0.9)',
                     backgroundColor : 'rgba(183,192,210,0.75)',
@@ -406,7 +407,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembres('tri_selectif');?>],
                     borderColor :'rgba(235,145,0,0.9)',
                     backgroundColor : 'rgba(235,145,0,0.75)',
@@ -490,7 +491,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembres('compost');?>],
                     borderColor :'rgba(0,153,84,0.9)',
                     backgroundColor : 'rgba(0,153,84,0.75)',
@@ -573,7 +574,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de verre",
+                    label: "Vos productions de verre",
                     data: [<?php echo $dashboard->datasetMembres('verre');?>],
                     borderColor :'rgba(25,136,200,0.9)',
                     backgroundColor : 'rgba(25,136,200,0.75)',
@@ -656,7 +657,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de textile",
+                    label: "Vos productions de textile",
                     data: [<?php echo $dashboard->datasetMembres('dechetterie');?>],
                     borderColor :'rgba(165,0,11,0.9)',
                     backgroundColor : 'rgba(165,0,11,0.75)',
@@ -739,7 +740,7 @@ require(__DIR__ .'/../../../include/main_slidebar.php');
                     pointBorderWidth : 1
                 }, 
                 {
-                    label: "Vos production de déchets",
+                    label: "Vos productions de déchets",
                     data: [<?php echo $dashboard->datasetMembres('bac_marron');?>],
                     borderColor :'rgba(77,36,0,0.9)',
                     backgroundColor : 'rgba(77,36,0,0.75)',

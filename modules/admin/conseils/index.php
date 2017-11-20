@@ -199,7 +199,7 @@ Dès que je sors mes poubelles, j'utilise le peson électronique fourni pour pes
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-        Quelles poubelles dois-je peser ?</a>
+        Comment et quelles poubelles dois-je peser ?</a>
       </h4>
     </div>
     <div id="collapse6" class="panel-collapse collapse">
@@ -288,19 +288,6 @@ Plus les commerçants afficheront leur engagement, plus les citoyens adopteront 
 <b>Je souhaite motiver mes voisins à faire du compostage collectif. Pouvez-vous m'aider ?</b><br>
 Oui, si vous avez choisi cet éco-geste, la collectivité vous accompagne pour motiver vos voisins et installer des composteurs de grande capacité. Prenez contact avec Fabien TREZERES, notre guide composteur f.trezeres@agglo-pau.fr .<br><br>
 
-<b>Comment participer à un atelier, une visite, un moment convivial ?</b><br>
-Je vais dans la rubrique «les ateliers » située à gauche dans l'interface.<br>
-Je consulte les propositions et je clique au choix :
-<ul>
-    <li>Je participe ou je ne participe pas </li>
-</ul>
-Attention, compte tenu du nombre de foyers inscrits au défi familles zéro déchet, chaque foyer pourra choisir un seul atelier pratique. Si il reste des places, nous vous en informerons par email.<br><br>
-
-<b>Je ne suis pas disponible pour les ateliers, les réunions, les visites </b><br>
-Si votre emploi du temps ne vous permet pas de participer, ne vous inquiétez pas. Vous pouvez tout à fait réduire vos déchets sans y participer.<br><br>
-
-
-
 <b>C'est bientôt Noël...les papiers cadeaux, les emballages des jouets....</b><br><br>
 
 <b>Comment faire concrètement ?</b><br>
@@ -311,13 +298,9 @@ Quelques idées :
     <li>Confectionner un repas de Noël avec des produits locaux achetés auprès des producteurs (j'y vais avec mes bocaux et sacs), </li>
     <li>Adopter la méthode furoshiki pour emballer vos cadeaux (coupons de tissu réutilisable),</li>
     <li>Fabriquer un cadeau à partir de récup si vous êtes bricoleur et créatif.</li>
-    <li>Le top 10 des cadeaux zéro déchet de l'association Zéro Waste france : <a href="https://www.zerowastefrance.org/fr/articles/220-notre-top-10-des-cadeaux-zero-dechet-a-offrir-a-noel">cliquez-ici</a></li>
+    
 </ul>
-
-
-<b>Je pars en vacances, est-ce que je pèse mes déchets ?</b><br>
-Vous avez pris de bonnes « habitudes » et vous êtes devenus pro dans l'utilisation du peson ? Alors pourquoi ne pas emporter avec vous le carnet et le peson ? Idéalement, vous vous conseillons de continuer à peser vos déchets pendant cette période.<br><br>
-
+<br>
 <b>Je souhaite impliquer mes enfants, comment faire ?</b><br>
 
 L'important c'est de les intéresser au sujet, ils s'y mettront progressivement si vous les impliquer dès le début.<br>
@@ -358,7 +341,52 @@ Oui bien sûr, le défi a pour ambition de faire changer nos petits gestes du qu
     </div>
   </div>
                     
-                    
+     
+                      <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse14">
+        Comment participer à un atelier, une visite, un moment convivial ?</a>
+      </h4>
+    </div>
+    <div id="collapse14" class="panel-collapse collapse">
+        <div class="panel-body">
+            Je vais dans la rubrique «les ateliers » située à gauche dans l'interface.<br>
+Je consulte les propositions et je clique au choix :
+<ul>
+    <li>Je participe ou je ne participe pas </li>
+</ul>
+Attention, compte tenu du nombre de foyers inscrits au défi familles zéro déchet, chaque foyer pourra choisir un seul atelier pratique. Si il reste des places, nous vous en informerons par email.<br><br>
+
+<b>Je ne suis pas disponible pour les ateliers, les réunions, les visites </b><br>
+Si votre emploi du temps ne vous permet pas de participer, ne vous inquiétez pas. Vous pouvez tout à fait réduire vos déchets sans y participer.<br>
+
+
+
+
+
+        </div>
+    </div>
+  </div>
+                      <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse15">
+        Je pars en vacances, est-ce que je pèse mes déchets ?</a>
+      </h4>
+    </div>
+    <div id="collapse15" class="panel-collapse collapse">
+        <div class="panel-body">
+           Vous avez pris de bonnes « habitudes » et vous êtes devenus pro dans l'utilisation du peson ? Alors pourquoi ne pas emporter avec vous le carnet et le peson ? Idéalement, vous vous conseillons de continuer à peser vos déchets pendant cette période.
+
+
+
+
+
+
+        </div>
+    </div>
+  </div>
                     
 </div>
               <br>          

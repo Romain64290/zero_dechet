@@ -7,14 +7,15 @@ $menu=7;
 require(__DIR__ .'/../../../include/config.inc.php');
 require(__DIR__ .'/../../../include/connexion.inc.php');
 require(__DIR__ .'/model.inc.php');
-
-
- 	
+	
 
 
 // préparation connexion
 $connect = new connection();
 $recherche = new recherche($connect);
+
+// Date jours plus 7
+$date_jmoins15=date('Y-m-d', strtotime('-15 days'));
 
 
 
@@ -132,6 +133,10 @@ $compteur=1;
                         $email= htmlspecialchars($event->email);
                         $telephone= htmlspecialchars($event->telephone);
                         $commune= htmlspecialchars($event->commune);
+  $alert="no";                      
+  $derniere_pesee=$recherche->dernierePesse($id_membre); 
+  if ($derniere_pesee==NULL OR $derniere_pesee<$date_jmoins15){$alert="ok";}
+   
                 
                         
 echo "
@@ -142,8 +147,11 @@ echo "
             <td>$telephone</td>
             <td>$email</td>
             <td>$commune</td>
-            <td><a href=\"profil.php?id_membre=$id_membre&email=$email\">Voir le profil <span class=\"label label-danger\"><i class=\"fa fa-warning\"></i></span></a></td> </tr>
-";
+            <td><a href=\"profil.php?id_membre=$id_membre&email=$email\">Voir le profil";
+
+  if($alert=="ok"){echo" <span class=\"label label-danger\"><i class=\"fa fa-warning\"></i></span>";}
+                    
+echo"</a></td> </tr>";
 
 $compteur++;
 }

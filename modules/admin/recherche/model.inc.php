@@ -105,6 +105,37 @@ $select->execute();
    
 }
 
+ /***********************************************************************
+ * Affiche les pesees d'un membre
+ **************************************************************************/
+  
+ function dernierePesse($id_membre)
+  {
+   
+   
+	try{
+$select = $this->con->prepare('SELECT *
+FROM membre_has_pesee
+WHERE id_membre= :id_membre
+ORDER BY date DESC, id_pesee DESC');
+
+$select->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
+
+$select->execute();
+	}
+	 catch (PDOException $e){
+       echo $e->getMessage() . " <br><b>Erreur lors de l'affichage des peseees d'un membre </b>\n";
+	throw $e;
+        exit;
+    }
+
+ $result = $select->fetch();
+ 
+ return $result['date'];
+      
+   
+}
+
 /**************************************************************************
  Affichage des réunions
 ***************************************************************************/  
