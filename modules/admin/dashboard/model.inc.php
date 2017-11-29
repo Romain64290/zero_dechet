@@ -305,7 +305,7 @@ function datasetMembre($id_membre,$type_dechet)
  ");	
   $select9->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select9->execute();
-  $data9 = $select2->fetch();
+  $data9 = $select9->fetch();
   $data9=number_format($data9['nbr'], 3, '.', '');
   
     // periode 10 (16/04 - 31/04)
@@ -410,7 +410,7 @@ function datasetMembres($type_dechet)
  WHERE date >= '2018-04-01 00:00:00' AND date < '2018-04-16 00:00:00'
  ");	
   $select9->execute();
-  $data9 = $select2->fetch();
+  $data9 = $select9->fetch();
   $data9=number_format($data9['nbr'], 3, '.', '');
   
     // periode 10 (16/04 - 31/04)

@@ -299,7 +299,7 @@ function datasetMembre($id_membre,$type_dechet)
  ");	
   $select9->bindParam(':id_membre', $id_membre, PDO::PARAM_STR);	
   $select9->execute();
-  $data9 = $select2->fetch();
+  $data9 = $select9->fetch();
   $data9=number_format($data9['nbr'], 3, '.', '');
   
     // periode 10 (16/04 - 31/04)
